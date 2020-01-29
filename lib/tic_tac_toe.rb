@@ -54,6 +54,6 @@ class Board
     end
 
     def view_board
-        return @board
+        puts @board
     end
 end
