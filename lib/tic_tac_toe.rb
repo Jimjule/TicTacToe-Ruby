@@ -1,4 +1,6 @@
 class Board
+
+    attr_reader( :current_player, :winner)
     BOARD_ROW = '-'
     BOARD_COLUMM = '|'
     BEGINNING_AND_END_LENGTH = 2
@@ -9,11 +11,27 @@ class Board
         @board_middle = []
         @board_middle_section = []
         @board_size = board_size
+        @current_player = 'O'
+        @turn_count = 0
+        @max_turns = board_size * board_size
+        @winner = false
     end
 
     def go
         set_board
-        player_move
+        while @turn_count < @max_turns do
+            change_player
+            player_move
+            increment_turn_count
+        end
+        draw
+    end
+
+    def draw
+    end
+
+    def increment_turn_count
+        @turn_count += 1
     end
 
     def set_board
@@ -30,16 +48,11 @@ class Board
     end
 
     def set_board_middle
-        add_board_edge
         add_board_spaces
-        add_board_edge
         @board_size.times do
-            @board_middle << [@board_middle_section.join]
+            @board_middle << @board_middle_section.join
         end
-    end
-
-    def reset_middle_section
-        @board_middle_section = []
+        i = 0
     end
 
     def add_board_spaces
@@ -48,13 +61,15 @@ class Board
         end
     end
 
-    def add_board_edge
-        @board_middle_section << BOARD_COLUMM
+    def reset_middle_section
+        @board_middle_section = []
     end
 
     def assemble_board
         @board << @board_top_and_bottom
-        @board << @board_middle
+        @board_middle.each do | section |
+            @board << BOARD_COLUMM + section + BOARD_COLUMM
+        end
         @board << @board_top_and_bottom
     end
 
@@ -81,8 +96,17 @@ class Board
 
     def make_move(square)
         puts 'Making move'
-        @board_middle[(square - 1) / 3] = @board_middle[(square - 1) / 3].join.split('')
-        @board_middle[(square - 1) / 3][(square - 1) % 3 + 1] = 'X'
+        @board_middle[(square - 1) / 3] = @board_middle[(square - 1) / 3].split('')
+        @board_middle[(square - 1) / 3][(square - 1) % 3] = @current_player
         @board_middle[(square - 1) / 3] = @board_middle[(square - 1) / 3].join
+    end
+
+    def change_player
+        @current_player == 'X' ? @current_player = 'O' : @current_player = 'X'
+        puts "#{@current_player}'s turn"
+    end
+
+    def check_for_winner
+        
     end
 end
