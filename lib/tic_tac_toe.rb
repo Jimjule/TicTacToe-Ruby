@@ -1,12 +1,14 @@
 class Board
 
-    attr_reader( :current_player, :winner)
+    attr_reader( :current_player, :winner )
     BOARD_ROW = '-'
     BOARD_COLUMM = '|'
     BEGINNING_AND_END_LENGTH = 2
 
     def initialize(board_size = 3)
         @board = []
+        @xmoves = []
+        @ymoves = []
         @board_top_and_bottom = []
         @board_middle = []
         @board_middle_section = []
@@ -87,18 +89,31 @@ class Board
     def player_move
         player_input = -1
         while player_input < 1 || player_input > 9 do
-            puts 'Please enter a number between 1-9'
+            puts 'Please enter a free number between 1-9'
             player_input = gets.chomp.to_i
+            @row = (player_input - 1) / 3
+            @column = (player_input - 1) % 3
+            check_square_is_free(player_input)
         end
+        # check_square_is_free(player_input)
         make_move(player_input)
         view_board
     end
 
+    def check_square_is_free(square)
+        # row = (square - 1) / 3
+        # column = (square - 1) % 3
+        @board_middle[@row] = @board_middle[@row]
+        player_input = -1 if @free_square = @board_middle[@row][@column] != '.'
+    end
+
     def make_move(square)
+        # row = (square - 1) / 3
+        # column = (square - 1) % 3
         puts 'Making move'
-        @board_middle[(square - 1) / 3] = @board_middle[(square - 1) / 3].split('')
-        @board_middle[(square - 1) / 3][(square - 1) % 3] = @current_player
-        @board_middle[(square - 1) / 3] = @board_middle[(square - 1) / 3].join
+        @board_middle[@row] = @board_middle[@row].split('')
+        @board_middle[@row][@column] = @current_player
+        @board_middle[@row] = @board_middle[@row].join
     end
 
     def change_player
