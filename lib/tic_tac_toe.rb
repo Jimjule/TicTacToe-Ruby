@@ -59,6 +59,7 @@ class Board
     end
 
     def view_board
+        system('clear')
         reset_board
         assemble_board
         puts @board
@@ -75,15 +76,13 @@ class Board
             player_input = gets.chomp.to_i
         end
         make_move(player_input)
+        view_board
     end
 
     def make_move(square)
-        puts 'Modulo'
-        puts (square - 1)/3
         puts 'Making move'
-        @board_middle[(square - 1)/3] = @board_middle[(square - 1)/3].join.split('')
-        @board_middle[(square - 1)/3][(square -1)%3 + 1] = 'X'
-        @board_middle[(square - 1)/3] = @board_middle[(square - 1)/3].join
-        puts @board
+        @board_middle[(square - 1) / 3] = @board_middle[(square - 1) / 3].join.split('')
+        @board_middle[(square - 1) / 3][(square - 1) % 3 + 1] = 'X'
+        @board_middle[(square - 1) / 3] = @board_middle[(square - 1) / 3].join
     end
 end
