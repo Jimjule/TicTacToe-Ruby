@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Jimjule/TicTacToe-Ruby.svg?branch=master)](https://travis-ci.org/Jimjule/TicTacToe-Ruby)
+
 # TicTacToe-Ruby
 
 A command-line 'Tic-Tac-Toe' application written in Ruby.
