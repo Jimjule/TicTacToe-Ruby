@@ -130,7 +130,7 @@ class Board
 
     def check_column(moves_to_check)
         for square in moves_to_check do
-            @winner = true if moves_to_check.include?(square + 3) && moves_to_check.include?(square + 6)
+            @winner = true if moves_to_check.include?(square + @board_size) && moves_to_check.include?(square + @board_size * 2)
         end
     end
 
