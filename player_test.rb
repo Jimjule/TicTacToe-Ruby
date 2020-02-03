@@ -1,4 +1,4 @@
 require './lib/player.rb'
 
 player = Player.new
-player.go
+player.make_move
