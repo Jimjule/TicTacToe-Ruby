@@ -66,7 +66,6 @@ class Board
   end
 
   def player_move(current_player)
-    puts 'Here'
     player_input = -1
     while player_input < 1 || player_input > @max_turns
       puts "Please enter a free number from 1-#{@max_turns}"

@@ -17,7 +17,6 @@ class Player
   end
 
   def view_board
-    puts 'Here'
     @board.view_board
   end
 
