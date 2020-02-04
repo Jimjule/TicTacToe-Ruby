@@ -16,7 +16,6 @@ class Board
     @board_size = board_size
     @turn_count = 0
     @max_turns = board_size * board_size
-    @winner = false
     set_board
   end
 
