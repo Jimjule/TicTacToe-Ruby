@@ -28,7 +28,7 @@ class Board
     @board_middle = middle.each_slice(@board_size).to_a
   end
 
-    def view_board
+  def view_board
     system('clear')
     reset_board
     assemble_board
@@ -50,7 +50,7 @@ class Board
 
   def check_for_winner(current_player)
     current_player == 'X' ? current_player_moves = @x_moves : current_player_moves = @o_moves
-    return check_column(current_player_moves) || check_row(current_player_moves) || check_diagonal(current_player_moves)
+    return check_row || check_column(current_player) || check_diagonal_falling(current_player) || check_diagonal_rising(current_player)
   end
 
   private
@@ -78,11 +78,9 @@ class Board
     @board_middle[@row] = @board_middle[@row]
     @board_middle[@row][@column] = current_player
     @board_middle[@row] = @board_middle[@row]
-    store_player_move(square, current_player)
   end
 
   def check_square_is_free(current_player, square)
-    puts current_player
     player_move(current_player) if square > @max_turns
     player_move(current_player) if @board_middle[@row][@column] == 'X' || @board_middle[@row][@column] == 'O'
   end
@@ -91,20 +89,57 @@ class Board
     current_player == 'X' ? @x_moves.push(square) : @o_moves.push(square)
   end
 
-  def check_column(moves_to_check)
-    for square in moves_to_check do
-      return moves_to_check.include?(square + @board_size) && moves_to_check.include?(square + @board_size * 2)
+  def check_column(current_player)
+    column_win = false
+    column_iterator = 0
+    line_size = 1
+    until column_iterator >= @board_size || line_size >= @board_size do
+      for row in @board_middle do
+	if row[column_iterator] == current_player
+	  line_size += 1
+	else
+	  line_size = 1 
+	  column_iterator += 1
+	end
+      end
     end
+    column_win = true if line_size >= @board_size
+    return column_win
   end
 
-  def check_row(moves_to_check)
-    return moves_to_check.include?(1) && moves_to_check.include?(2) && moves_to_check.include?(3) ||
-           moves_to_check.include?(4) && moves_to_check.include?(5) && moves_to_check.include?(6) ||
-           moves_to_check.include?(7) && moves_to_check.include?(8) && moves_to_check.include?(9)
+  def check_row
+    row_win = false
+    for row in @board_middle do
+     row_win = true if row.uniq.length == 1
+    end 
+    return row_win
   end
 
-  def check_diagonal(moves_to_check)
-    return moves_to_check.include?(1) && moves_to_check.include?(9) && moves_to_check.include?(5) ||
-           moves_to_check.include?(3) && moves_to_check.include?(7) && moves_to_check.include?(5)
+  def check_diagonal_falling(current_player)
+    diagonal_falling_win = false
+    diagonal_iterator = 0 
+    line_size = 0 
+    for row in @board_middle do
+	if row[diagonal_iterator] == current_player
+	diagonal_iterator += 1
+	line_size += 1
+      end
+    end
+    diagonal_falling_win = true if line_size >= @board_size 
+    return diagonal_falling_win  
+  end
+
+  def check_diagonal_rising(current_player)
+    diagonal_rising_win = false
+    diagonal_iterator = @board_size - 1
+    line_size = 0 
+    for row in @board_middle do
+	if row[diagonal_iterator] == current_player
+	diagonal_iterator -= 1
+	line_size += 1
+      end
+    end
+    diagonal_rising_win = true if line_size >= @board_size 
+    return diagonal_rising_win  
   end
 end

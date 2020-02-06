@@ -7,8 +7,14 @@ describe Game do
     @game = Game.new
   end
 
-  it 'Can win diagonally' do
+  it 'Can win diagonally falling' do
     allow(@game.board).to receive(:gets).and_return('9', '2', '5', '3', '1', '4', '6', '7', '8')
+    @game.go
+    expect(@game.winner).to be true
+  end
+
+  it 'Can win diagonally rising' do
+    allow(@game.board).to receive(:gets).and_return('9', '5', '2', '7', '1', '4', '6', '3', '8')
     @game.go
     expect(@game.winner).to be true
   end
