@@ -6,9 +6,9 @@ require_relative 'board'
 class Game
   attr_reader(:player, :board, :winner)
 
-  def initialize(board_size = 3, player = Player.new, board = Board.new(board_size))
-    @player = player
-    @board = board
+  def initialize
+    @player = Player.new
+    @board = Board.new(set_board_size)
     @turn_count = 0
     @winner = false 
     puts 'Welcome to TicTacToe'
@@ -25,6 +25,18 @@ class Game
   end
 
   private
+  def set_board_size
+    board_size = -1
+    puts 'Please enter the length of a board side'
+    until valid_board_size(board_size)
+      board_size = gets.chomp.to_i
+    end
+    return board_size 
+  end
+
+  def valid_board_size(board_size)
+    board_size.is_a?(Integer) && board_size > 0
+  end
 
   def view_board
     @board.view_board

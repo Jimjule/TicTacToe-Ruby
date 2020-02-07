@@ -4,6 +4,7 @@ require 'game'
 
 describe Game do
   before(:each) do
+    allow_any_instance_of(Game).to receive(:gets).and_return('3')
     @game = Game.new
   end
 
