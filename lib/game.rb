@@ -10,11 +10,7 @@ class Game
     @player = player
     @board = board
     @turn_count = 0
-    @winner = false
-    welcome
-  end
-
-  def welcome
+    @winner = false 
     puts 'Welcome to TicTacToe'
   end
 
