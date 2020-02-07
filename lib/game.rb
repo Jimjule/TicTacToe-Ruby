@@ -19,18 +19,23 @@ class Game
   end
 
   def go
-      until @turn_count == @board.max_turns || @winner
-        @player.change_player
-        @board.player_move(@player.current_player)
-        @winner = check_for_winner
-        increment_turn_count
-      end
-      announce_winner
+    until game_is_over
+      @player.change_player
+      @board.player_move(@player.current_player)
+      @winner = check_for_winner
+      @turn_count += 1
+    end
+    announce_winner
   end
 
   private
+
   def view_board
     @board.view_board
+  end
+
+  def game_is_over
+    @turn_count == @board.max_turns || @winner
   end
 
   def check_for_winner
@@ -39,10 +44,6 @@ class Game
 
   def announce_winner
     puts "#{@player.current_player} is the winner!" if @winner
-    puts 'Draw!' if !@winner
-  end
-
-  def increment_turn_count
-    @turn_count += 1
+    puts 'Draw!' unless @winner
   end
 end
