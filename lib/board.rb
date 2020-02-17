@@ -5,6 +5,9 @@ class Board
   BOARD_ROW = '-'
   BOARD_COLUMM = '|'
   BEGINNING_AND_END_LENGTH = 2
+  ITERATE_RISING = -1
+  ITERATE_FALLING = 1
+  ITERATE_FROM_START = 0
 
   def initialize(board_size = 3)
     @board = []
@@ -32,7 +35,7 @@ class Board
     puts @board
   end
 
-  def check_square_is_free(row, column)
+  def check_square_is_free(row, column) 
     @board_middle[row][column] != 'X' && @board_middle[row][column] != 'O'
   end
 
@@ -42,7 +45,8 @@ class Board
 
   def check_for_winner(current_player)
     check_row || check_column(current_player) ||
-      check_diagonal_falling(current_player) || check_diagonal_rising(current_player)
+      check_diagonal(current_player, ITERATE_FROM_START, ITERATE_FALLING) ||
+        check_diagonal(current_player, @board_size - 1, ITERATE_RISING)
   end
 
   private
@@ -73,52 +77,44 @@ class Board
 
   def check_column(current_player)
     column_iterator = 0
-    line_size = 1
-    until board_checked(column_iterator, line_size)
+    @line_size = 1
+    until board_checked(column_iterator)
       for row in @board_middle do
         if row[column_iterator] == current_player
-          line_size += 1
+          @line_size += 1
         else
-          line_size = 1
+          @line_size = 1
           column_iterator += 1
         end
       end
     end
-    line_size >= @board_size
+    @line_size >= @board_size
   end
 
-  def board_checked(iterator, line_size)
-    iterator >= @board_size || line_size >= @board_size
+  def board_checked(iterator)
+    iterator >= @board_size || @line_size >= @board_size
   end
 
-  def check_row
+  def check_row  
     for row in @board_middle do
       row_win = true if row.uniq.length == 1
     end
     row_win
   end
 
-  def check_diagonal_falling(current_player)
-    diagonal_iterator = 0
-    line_size = 0
-    for row in @board_middle do
-      if row[diagonal_iterator] == current_player
-        diagonal_iterator += 1
-        line_size += 1
-      end
-    end
-    line_size >= @board_size
+  def check_diagonal(current_player, diagonal_iterator, iterate_step)
+    @line_size = 0
+    diagonal_check_loop(current_player, diagonal_iterator, iterate_step)
+    @line_size >= @board_size 
   end
 
-  def check_diagonal_rising(current_player)
-    diagonal_iterator = @board_size - 1
-    line_size = 0
+  def diagonal_check_loop(current_player, diagonal_iterator, iterate_step)
+    iterator = diagonal_iterator
     for row in @board_middle do
-      if row[diagonal_iterator] == current_player
-        diagonal_iterator -= 1
-        line_size += 1
+      if row[iterator] == current_player
+        iterator += iterate_step
+        @line_size += 1
       end
     end
-    line_size >= @board_size
   end
 end

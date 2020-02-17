@@ -16,28 +16,26 @@ class Game
 
   def go
     until game_is_over
-      @player.change_player
-      submit_move
-      @winner = @board.check_for_winner(@player.current_player)
-      @turn_count += 1
+      turn_loop
     end
     announce_winner
   end
 
   private
 
+  def turn_loop
+    @player.change_player
+    submit_move
+    @winner = @board.check_for_winner(@player.current_player)
+    @turn_count += 1
+  end
+
   def submit_move
-    player_move = @player.select_move(@board.max_turns)
-    @board.make_move(@player.current_player, calculate_row(player_move), calculate_column(player_move))
+    player_input = @player.select_move(@board.max_turns)
+    row = (player_input - 1) / @board.board_size
+    column = (player_input - 1) % @board.board_size
+    @board.make_move(@player.current_player, row, column)
     @board.view_board
-  end
-
-  def calculate_row(player_input)
-    (player_input - 1) / @board.board_size
-  end
-
-  def calculate_column(player_input)
-    (player_input - 1) % @board.board_size
   end
 
   def game_is_over
