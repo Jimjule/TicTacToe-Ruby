@@ -9,7 +9,6 @@ describe Board do
 
   it 'Makes a move' do
     board = Board.new
-    allow(board).to receive(:gets).and_return('2', '1')
     board.make_move('X', 0, 1)
     board.make_move('O', 0, 0)
     expect(board.board_middle[0].join).to eq('OX3')

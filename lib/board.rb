@@ -35,7 +35,7 @@ class Board
     puts @board
   end
 
-  def check_square_is_free(row, column) 
+  def check_square_is_free(row, column)
     @board_middle[row][column] != 'X' && @board_middle[row][column] != 'O'
   end
 
@@ -46,7 +46,7 @@ class Board
   def check_for_winner(current_player)
     check_row || check_column(current_player) ||
       check_diagonal(current_player, ITERATE_FROM_START, ITERATE_FALLING) ||
-        check_diagonal(current_player, @board_size - 1, ITERATE_RISING)
+      check_diagonal(current_player, @board_size - 1, ITERATE_RISING)
   end
 
   private
@@ -95,7 +95,7 @@ class Board
     iterator >= @board_size || @line_size >= @board_size
   end
 
-  def check_row  
+  def check_row
     for row in @board_middle do
       row_win = true if row.uniq.length == 1
     end
@@ -105,7 +105,7 @@ class Board
   def check_diagonal(current_player, diagonal_iterator, iterate_step)
     @line_size = 0
     diagonal_check_loop(current_player, diagonal_iterator, iterate_step)
-    @line_size >= @board_size 
+    @line_size >= @board_size
   end
 
   def diagonal_check_loop(current_player, diagonal_iterator, iterate_step)

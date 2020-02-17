@@ -2,13 +2,15 @@
 
 require_relative 'player'
 require_relative 'board'
+require_relative 'input'
 
 class Game
-  attr_reader(:player, :board, :winner)
+  attr_reader(:player, :board, :input, :winner)
 
   def initialize
     @player = Player.new
-    @board = Board.new(@player.set_board_size)
+    @input = Input.new
+    @board = Board.new(@input.set_board_size)
     @turn_count = 0
     @winner = false
     puts 'Welcome to TicTacToe'
@@ -31,7 +33,7 @@ class Game
   end
 
   def submit_move
-    player_input = @player.select_move(@board.max_turns)
+    player_input = @input.select_move(@board.max_turns)
     row = (player_input - 1) / @board.board_size
     column = (player_input - 1) % @board.board_size
     @board.make_move(@player.current_player, row, column)
