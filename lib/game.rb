@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'player'
 require_relative 'board'
 require_relative 'input'
 
 class Game
-  attr_reader(:player, :board, :input, :winner)
+  attr_reader(:board, :input, :winner)
 
   def initialize
-    @player = Player.new
     @input = Input.new
     @board = Board.new(@input.set_board_size)
     @turn_count = 0
@@ -23,20 +21,24 @@ class Game
     announce_winner
   end
 
+  def current_player
+    @turn_count % 2 == 0 ? 'X' : 'O'
+  end
+
   private
 
   def turn_loop
-    @player.change_player
+    puts "#{current_player}'s move"
     submit_move
-    @winner = @board.check_for_winner(@player.current_player)
-    @turn_count += 1
+    @winner = @board.check_for_winner(current_player)
+    @turn_count += 1 unless @winner
   end
 
   def submit_move
     player_input = @input.select_move(@board.max_turns)
     row = (player_input - 1) / @board.board_size
     column = (player_input - 1) % @board.board_size
-    @board.make_move(@player.current_player, row, column)
+    @board.make_move(current_player, row, column)
     @board.view_board
   end
 
@@ -45,7 +47,7 @@ class Game
   end
 
   def announce_winner
-    puts "#{@player.current_player} is the winner!" if @winner
+    puts "#{current_player} is the winner!" if @winner
     puts 'Draw!' unless @winner
   end
 end

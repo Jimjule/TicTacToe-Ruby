@@ -11,6 +11,6 @@ describe Game do
     allow(game.input).to receive(:gets).and_return('1', '2', '3', '4', '6', '5', '7', '9', '8')
     game.go
     expect(game.winner).to eq false
-    expect(game.player.current_player).to eq 'X'
+    expect(game.current_player).to eq 'O'
   end
 end
