@@ -42,9 +42,7 @@ class Game
 
   def submit_move
     player_input = @input.select_move(@board.max_turns)
-    row = (player_input - 1) / @board.board_size
-    column = (player_input - 1) % @board.board_size
-    @board.make_move(current_player.mark, row, column)
+    @board.make_move(current_player.mark, row = (player_input - 1) / @board.board_size, column = (player_input - 1) % @board.board_size)
     @board.view_board
   end
 
