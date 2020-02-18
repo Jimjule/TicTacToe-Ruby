@@ -1,7 +1,5 @@
 require 'game'
 
-# frozen_string_literal: true
-
 describe Game do
   it 'Win with row 4x4' do
     allow_any_instance_of(Input).to receive(:gets).and_return('4')

@@ -1,7 +1,5 @@
 require 'game'
 
-# frozen_string_literal: true
-
 describe Game do
   it "Can call X 'Player 1'" do
     allow_any_instance_of(Input).to receive(:gets).and_return('Player 1', 'Player 2', '3')

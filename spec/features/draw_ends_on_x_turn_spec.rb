@@ -2,8 +2,6 @@ require 'game'
 require 'player'
 require 'board'
 
-# frozen_string_literal: true
-
 describe Game do
   it 'Ends with player X' do
     allow_any_instance_of(Input).to receive(:gets).and_return('Player 1', 'Player 2', '3')

@@ -1,7 +1,5 @@
 require 'board'
 
-# frozen_string_literal: true
-
 describe Board do
   it 'Can make a 4x4 board' do
     expect { Board.new(4) }.to output("------\n|1234|\n|5678|\n|9101112|\n|13141516|\n------\n").to_stdout

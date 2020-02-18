@@ -1,5 +1,4 @@
 require 'input'
-# frozen_string_literal: true
 
 describe Input do
   it 'Does not throw errors' do

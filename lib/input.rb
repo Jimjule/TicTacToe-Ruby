@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Input
   def set_player_name(current_player)
     puts "Please enter a name for #{current_player}"

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Board
   attr_reader(:current_player, :board_middle, :turn_count, :max_turns, :board_size)
   BOARD_ROW = '-'

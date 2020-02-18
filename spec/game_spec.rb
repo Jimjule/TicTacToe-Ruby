@@ -1,6 +1,5 @@
 require 'game'
 
-# frozen_string_literal: true
 
 describe Game do
   it 'Displays a board' do

@@ -1,7 +1,5 @@
 require 'board'
 
-# frozen_string_literal: true
-
 describe Board do
   it 'Displays a board' do
     expect { Board.new }.to output("-----\n|123|\n|456|\n|789|\n-----\n").to_stdout
