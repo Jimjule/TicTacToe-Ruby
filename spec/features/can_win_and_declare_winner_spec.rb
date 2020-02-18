@@ -4,7 +4,7 @@ require 'game'
 
 describe Game do
   before(:each) do
-    allow_any_instance_of(Input).to receive(:gets).and_return('3')
+    allow_any_instance_of(Input).to receive(:gets).and_return('Player 1', 'Player 2', '3')
     @game = Game.new
   end
 
@@ -24,7 +24,7 @@ describe Game do
     allow(@game.input).to receive(:gets).and_return('9', '1', '7', '2', '6', '3', '4', '5', '8')
     @game.go
     expect(@game.winner).to be true
-    expect { @game.go }.to output("O is the winner!\n").to_stdout
+    expect { @game.go }.to output("Player 2 is the winner!\n").to_stdout
   end
 
   it 'Can win a column' do

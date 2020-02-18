@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
+require_relative 'player'
 require_relative 'board'
 require_relative 'input'
 
 class Game
-  attr_reader(:board, :input, :winner)
+  attr_reader :player_x, :player_o, :board, :input, :winner
 
   def initialize
-    @input = Input.new
-    @board = Board.new(@input.set_board_size)
-    @turn_count = 0
-    @winner = false
     puts 'Welcome to TicTacToe'
+    @turn_count = 0
+    @input = Input.new
+    @player_x = Player.new(@input.set_player_name('X'), 'X')
+    @player_o = Player.new(@input.set_player_name('O'), 'O')
+    @board = Board.new(@input.set_board_size)
+    @winner = false
   end
 
   def go
@@ -22,15 +25,15 @@ class Game
   end
 
   def current_player
-    @turn_count % 2 == 0 ? 'X' : 'O'
+    @turn_count % 2 == 0 ? @player_x : @player_o
   end
 
   private
 
   def turn_loop
-    puts "#{current_player}'s move"
+    puts "#{current_player.id}'s move"
     submit_move
-    @winner = @board.check_for_winner(current_player)
+    @winner = @board.check_for_winner(current_player.mark)
     @turn_count += 1 unless @winner
   end
 
@@ -38,7 +41,7 @@ class Game
     player_input = @input.select_move(@board.max_turns)
     row = (player_input - 1) / @board.board_size
     column = (player_input - 1) % @board.board_size
-    @board.make_move(current_player, row, column)
+    @board.make_move(current_player.mark, row, column)
     @board.view_board
   end
 
@@ -47,7 +50,7 @@ class Game
   end
 
   def announce_winner
-    puts "#{current_player} is the winner!" if @winner
+    puts "#{current_player.id} is the winner!" if @winner
     puts 'Draw!' unless @winner
   end
 end

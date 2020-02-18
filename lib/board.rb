@@ -109,10 +109,9 @@ class Board
   end
 
   def diagonal_check_loop(current_player, diagonal_iterator, iterate_step)
-    iterator = diagonal_iterator
     for row in @board_middle do
-      if row[iterator] == current_player
-        iterator += iterate_step
+      if row[diagonal_iterator] == current_player
+        diagonal_iterator += iterate_step
         @line_size += 1
       end
     end
