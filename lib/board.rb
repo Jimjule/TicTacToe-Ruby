@@ -9,17 +9,17 @@ class Board
   ITERATE_FALLING = 1
   ITERATE_FROM_START = 0
 
-  def initialize(board_size = 3)
+  def initialize(board_size = 3, command_line_application = true)
     @board = []
     @board_middle = []
     @board_size = board_size
     @max_turns = board_size * board_size
-    set_board
+    set_board(command_line_application)
   end
 
-  def set_board
+  def set_board(command_line_application)
     set_middle_sections
-    view_board
+    view_board if command_line_application
   end
 
   def set_middle_sections

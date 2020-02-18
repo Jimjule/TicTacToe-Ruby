@@ -10,13 +10,14 @@ class Game
   X_MARK = 'X'
   O_MARK = 'O'
 
-  def initialize
-    puts 'Welcome to TicTacToe'
+  def initialize(command_line_application = true)
+    @command_line_application = command_line_application
+    welcome
     @turn_count = 0
     @input = Input.new
     @player_x = Player.new(@input.set_player_name('X'), X_MARK)
     @player_o = Player.new(@input.set_player_name('O'), O_MARK)
-    @board = Board.new(@input.set_board_size)
+    @board = Board.new(@input.set_board_size, command_line_application)
     @winner = false
   end
 
@@ -33,6 +34,10 @@ class Game
 
   private
 
+  def welcome
+    puts 'Welcome to TicTacToe'
+  end
+
   def turn_loop
     puts "#{current_player.id}'s move"
     submit_move
@@ -43,7 +48,7 @@ class Game
   def submit_move
     player_input = @input.select_move(@board.max_turns)
     @board.make_move(current_player.mark, row = (player_input - 1) / @board.board_size, column = (player_input - 1) % @board.board_size)
-    @board.view_board
+    @board.view_board if @command_line_application
   end
 
   def game_is_over
