@@ -76,25 +76,37 @@ class Board
   end
 
   def check_column(current_player)
-    @column_iterator = 0
-    @line_size = 1
+    @column_iterator = ITERATE_FROM_START
+    @line_size = ITERATE_FROM_START
     check_column_loop(current_player) until board_checked(@column_iterator)
-    @line_size >= @board_size
+    @line_size >= @board_size - 1
   end
 
   def check_column_loop(current_player)
     for row in @board_middle do
-      if row[@column_iterator] == current_player
-        @line_size += 1
-      else
-        @line_size = 1
-        @column_iterator += 1
-      end
+      next_column(row, current_player)
     end
   end
 
+  def next_column(row, current_player)
+    if row[@column_iterator] == current_player
+      line_is_unbroken
+    else
+      new_line
+    end
+  end
+
+  def line_is_unbroken
+    @line_size += 1
+  end
+
+  def new_line
+    @line_size = ITERATE_FROM_START
+    @column_iterator += 1
+  end
+
   def board_checked(iterator)
-    iterator >= @board_size || @line_size >= @board_size
+    iterator >= @board_size || @line_size >= @board_size - 1
   end
 
   def check_row
@@ -105,7 +117,7 @@ class Board
   end
 
   def check_diagonal(current_player, diagonal_iterator, iterate_step)
-    @line_size = 0
+    @line_size = ITERATE_FROM_START
     @diagonal_iterator = diagonal_iterator
     diagonal_check_loop(current_player, iterate_step)
     @line_size >= @board_size
@@ -119,6 +131,6 @@ class Board
 
   def next_diagonal(iterate_step)
     @diagonal_iterator += iterate_step
-    @line_size += 1
+    line_is_unbroken
   end
 end
