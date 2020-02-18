@@ -89,11 +89,7 @@ class Board
   end
 
   def next_column(row, current_player)
-    if row[@column_iterator] == current_player
-      line_is_unbroken
-    else
-      new_line
-    end
+    row[@column_iterator] == current_player ? line_is_unbroken : new_line
   end
 
   def line_is_unbroken
