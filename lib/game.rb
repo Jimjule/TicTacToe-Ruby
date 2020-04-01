@@ -5,9 +5,6 @@ require_relative 'input'
 class Game
   attr_reader :player_x, :player_o, :board, :input, :winner
 
-  X_MARK = 'X'
-  O_MARK = 'O'
-
   def initialize(command_line_application = true, input, player_x, player_o, board)
     @command_line_application = command_line_application
     welcome
