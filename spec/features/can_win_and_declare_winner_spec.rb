@@ -2,9 +2,11 @@ require 'game'
 
 describe Game do
   before(:each) do
-    allow_any_instance_of(Input).to receive(:gets).and_return('Player 1', 'Player 2', '3')
+    allow_any_instance_of(Input).to receive(:gets).and_return('3')
     input = Input.new
-    @game = Game.new(true, input)
+    player_x = Player.new('Player 1', 'X')
+    player_o = Player.new('Player 2', 'O')
+    @game = Game.new(true, input, player_x, player_o)
   end
 
   it 'Can win diagonally falling' do
