@@ -8,11 +8,11 @@ class Game
   X_MARK = 'X'
   O_MARK = 'O'
 
-  def initialize(command_line_application = true)
+  def initialize(command_line_application = true, input)
     @command_line_application = command_line_application
     welcome
     @turn_count = 0
-    @input = Input.new
+    @input = input
     @player_x = Player.new(@input.set_player_name('X'), X_MARK)
     @player_o = Player.new(@input.set_player_name('O'), O_MARK)
     @board = Board.new(@input.set_board_size, command_line_application)
