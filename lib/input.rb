@@ -1,12 +1,12 @@
 class Input
-  def set_player_name(current_player)
+  def get_player_name(current_player)
     puts "Please enter a name for #{current_player}"
     player_name = gets.chomp
     valid_player_name(player_name, current_player)
   end
 
   def valid_player_name(player_name, current_player)
-    player_name.length <= 50 ? player_name : set_player_name(current_player)
+    player_name.length <= 50 ? player_name : get_player_name(current_player)
   end
 
   def set_board_size
