@@ -1,4 +1,4 @@
-require './lib/tic_tac_toe.rb'
+require './lib/game.rb'
 
-board = Board.new
-board.go
+game = Game.new(true)
+game.go
