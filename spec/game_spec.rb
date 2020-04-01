@@ -1,6 +1,5 @@
 require 'game'
 
-
 describe Game do
 
   before(:each) do
@@ -11,12 +10,14 @@ describe Game do
 
   it 'Displays a board' do
     allow_any_instance_of(Input).to receive(:gets).and_return('3')
-    expect { Game.new(true, @input, @player_x, @player_o) }.to output("Welcome to TicTacToe\nPlease enter the length of a board side\n-----\n|123|\n|456|\n|789|\n-----\n").to_stdout
+    board = Board.new(@input.set_board_size, true)
+    expect { Game.new(true, @input, @player_x, @player_o, board) }.to output("Welcome to TicTacToe\n").to_stdout
   end
 
   it 'Asks for board size input' do
     allow_any_instance_of(Input).to receive(:gets).and_return('4')
-    game = Game.new(true, @input, @player_x, @player_o)
+    board = Board.new(@input.set_board_size, true)
+    game = Game.new(true, @input, @player_x, @player_o, board)
     expect(game.board.board_size).to eq 4
   end
 end

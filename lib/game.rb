@@ -8,7 +8,7 @@ class Game
   X_MARK = 'X'
   O_MARK = 'O'
 
-  def initialize(command_line_application = true, input, player_x, player_o)
+  def initialize(command_line_application = true, input, player_x, player_o, board)
     @command_line_application = command_line_application
     welcome
     @turn_count = 0
@@ -17,7 +17,8 @@ class Game
     # @player_x = Player.new(@input.get_player_name('X'), X_MARK)
     # @player_o = Player.new(@input.get_player_name('O'), O_MARK)
     @player_o = player_o
-    @board = Board.new(@input.set_board_size, command_line_application)
+    # @board = Board.new(@input.set_board_size, command_line_application)
+    @board = board
     @winner = false
   end
 
