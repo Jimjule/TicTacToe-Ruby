@@ -14,10 +14,7 @@ class Game
     @turn_count = 0
     @input = input
     @player_x = player_x
-    # @player_x = Player.new(@input.get_player_name('X'), X_MARK)
-    # @player_o = Player.new(@input.get_player_name('O'), O_MARK)
     @player_o = player_o
-    # @board = Board.new(@input.set_board_size, command_line_application)
     @board = board
     @winner = false
   end
