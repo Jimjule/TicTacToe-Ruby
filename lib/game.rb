@@ -7,9 +7,9 @@ class Game
 
   def initialize(command_line_application = true, inOut, player_x, player_o, board)
     @command_line_application = command_line_application
-    welcome
     @turn_count = 0
     @inOut = inOut
+    welcome
     @player_x = player_x
     @player_o = player_o
     @board = board
@@ -30,7 +30,7 @@ class Game
   private
 
   def welcome
-    puts 'Welcome to TicTacToe'
+    @inOut.write('Welcome to TicTacToe')
   end
 
   def turn_loop
