@@ -10,7 +10,7 @@ describe Game do
     board = Board.new(@input, 3, true)
     player_x = Player.new('Player 1', 'X')
     player_o = Player.new('Player 2', 'O')
-    game = Game.new(true, @input, player_x, player_o, board)
+    game = Game.new(@input, player_x, player_o, board)
     allow(game.inOut).to receive(:gets).and_return('1', '2', '3', '4', '6', '5', '7', '9', '8')
     expect(game.player_x.id).to eq 'Player 1'
   end

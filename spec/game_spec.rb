@@ -10,13 +10,13 @@ describe Game do
 
   it 'Displays a board' do
     board = Board.new(@inOut, 3, true)
-    game = Game.new(true, ConsoleInOut.new('', ''), @player_x, @player_o, board)
+    game = Game.new(ConsoleInOut.new('', ''), @player_x, @player_o, board)
     expect(@inOut.output.join).to include("-----|123||456||789|-----")
   end
 
   it 'Asks for board size input' do
     board = Board.new(@inOut, 4, true)
-    game = Game.new(true, ConsoleInOut.new('', ''), @player_x, @player_o, board)
+    game = Game.new(ConsoleInOut.new('', ''), @player_x, @player_o, board)
     expect(game.board.board_size).to eq 4
   end
 end

@@ -5,8 +5,7 @@ require_relative 'consoleInOut'
 class Game
   attr_reader :player_x, :player_o, :board, :inOut, :winner
 
-  def initialize(command_line_application = true, inOut, player_x, player_o, board)
-    @command_line_application = command_line_application
+  def initialize(inOut, player_x, player_o, board)
     @turn_count = 0
     @inOut = inOut
     welcome
@@ -43,7 +42,7 @@ class Game
   def submit_move
     player_input = @inOut.select_move(@board.max_turns)
     @board.make_move(current_player.mark, row = (player_input - 1) / @board.board_size, column = (player_input - 1) % @board.board_size)
-    @board.view_board if @command_line_application
+    @board.view_board
   end
 
   def game_is_over
