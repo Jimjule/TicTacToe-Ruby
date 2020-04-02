@@ -1,9 +1,13 @@
-class ConsoleInOut
+class ConsoleMock
   attr_reader :input, :output
 
   def initialize(input, output)
     @input = input
     @output = output
+  end
+
+  def get_input
+    @input
   end
 
   def write(to_write)

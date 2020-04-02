@@ -8,6 +8,12 @@ describe Game do
     @player_o = Player.new('Player 2', 'O')
   end
 
+  it 'Returns current player X' do
+    board = Board.new(@inOut, 3)
+    game = Game.new(ConsoleInOut.new('', ''), @player_x, @player_o, board)
+    expect(game.current_player).to eq(@player_x)
+  end
+
   it 'Displays a board' do
     board = Board.new(@inOut, 3)
     game = Game.new(ConsoleInOut.new('', ''), @player_x, @player_o, board)

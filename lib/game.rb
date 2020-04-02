@@ -1,6 +1,6 @@
 require_relative 'player'
 require_relative 'board'
-require_relative 'consoleInOut'
+require_relative 'console_in_out'
 
 class Game
   attr_reader :player_x, :player_o, :board, :inOut, :winner
