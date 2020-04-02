@@ -3,13 +3,12 @@ require 'game'
 describe Game do
 
   before(:each) do
-    @input = ConsoleInOut.new(STDIN, STDOUT)
+    @input = ConsoleInOut.new('', '')
   end
 
   it "Can call X 'Player 1'" do
-    allow_any_instance_of(ConsoleInOut).to receive(:gets).and_return('Player 1')
     board = Board.new(@input, 3, true)
-    player_x = Player.new(@input.get_player_name('X'), 'X')
+    player_x = Player.new('Player 1', 'X')
     player_o = Player.new('Player 2', 'O')
     game = Game.new(true, @input, player_x, player_o, board)
     allow(game.inOut).to receive(:gets).and_return('1', '2', '3', '4', '6', '5', '7', '9', '8')

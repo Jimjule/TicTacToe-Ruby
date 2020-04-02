@@ -17,7 +17,7 @@ class ConsoleInOut
   end
 
   def get_player_name(current_player)
-    puts "Please enter a name for #{current_player}"
+    @output.write("Please enter a name for #{current_player}")
     player_name = gets.chomp
     valid_player_name(player_name, current_player)
   end
@@ -27,7 +27,7 @@ class ConsoleInOut
   end
 
   def set_board_size
-    puts 'Please enter the length of a board side'
+    @output.write('Please enter the length of a board side')
     board_size = gets.chomp.to_i
     valid_board_size(board_size)
   end
