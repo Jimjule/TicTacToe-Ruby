@@ -51,7 +51,7 @@ class Game
   end
 
   def announce_winner
-    puts "#{current_player.id} is the winner!" if @winner
-    puts 'Draw!' unless @winner
+    @inOut.write("#{current_player.id} is the winner!") if @winner
+    @inOut.write('Draw!') unless @winner
   end
 end
