@@ -11,11 +11,10 @@ describe Board do
     expect(board.inOut.output).to eq([["-----"], "|123|", "|456|", "|789|", ["-----"]])
   end
 
-  it 'Makes a move' do
+  it 'Makes a move and checks that the square is occupied' do
     board = Board.new(@consoleInOut)
-    board.make_move('X', 0, 1)
-    board.make_move('O', 0, 0)
-    expect(board.board_middle[0]).to eq(['O', 'X', '3'])
+    board.make_move('X', 1, 1)
+    expect(board.check_square_is_free(1, 1)).to eq(false)
   end
 
   it 'Views the board' do
@@ -33,11 +32,5 @@ describe Board do
   it 'Checks square is free' do
     board = Board.new(@consoleInOut)
     expect(board.check_square_is_free(1, 1)).to eq(true)
-  end
-
-  it 'Checks square is occupied' do
-    board = Board.new(@consoleInOut)
-    board.make_move('X', 1, 1)
-    expect(board.check_square_is_free(1, 1)).to eq(false)
   end
 end
