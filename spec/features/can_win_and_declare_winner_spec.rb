@@ -24,8 +24,6 @@ describe Game do
   it 'Can win a row' do
     allow(@game.inOut).to receive(:gets).and_return('9', '1', '7', '2', '6', '3', '4', '5', '8')
     @game.go
-    expect(@game.winner).to be true
-    @game.go
     expect(@game.inOut.output.last).to eq("Player 2 is the winner!")
   end
 

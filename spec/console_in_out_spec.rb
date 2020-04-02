@@ -18,28 +18,28 @@ describe ConsoleInOut do
   end
 
   it 'Gets player name' do
-    input = "A name"
+    input = 'A name'
     output = []
     console_in_out = ConsoleMock.new(input, output)
     expect(console_in_out.get_player_name(Player.new('1', 'X'))).to eq("A name")
   end
 
   it 'Validates player name' do
-    input = "A name"
+    input = 'A name'
     output = []
     console_in_out = ConsoleMock.new(input, output)
     expect(console_in_out.valid_player_name(input, Player.new('5', 'X'))).to eq(input)
   end
 
   it 'Sets board size' do
-    input = "6"
+    input = '6'
     output = []
     console_in_out = ConsoleMock.new(input, output)
     expect(console_in_out.set_board_size).to eq(6)
   end
 
   it 'Validates board size' do
-    input = ''
+    input = []
     output = []
     console_in_out = ConsoleInOut.new(input, output)
     console_in_out.valid_board_size(13)
@@ -47,7 +47,7 @@ describe ConsoleInOut do
   end
 
   it 'Gets a move' do
-    input = "8"
+    input = '8'
     output = []
     console_in_out = ConsoleMock.new(input, output)
     expect(console_in_out.select_move(9)).to eq(8)
