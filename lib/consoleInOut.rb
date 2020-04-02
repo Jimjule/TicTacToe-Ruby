@@ -17,7 +17,7 @@ class ConsoleInOut
   end
 
   def get_player_name(current_player)
-    @output.write("Please enter a name for #{current_player}")
+    write("Please enter a name for #{current_player}")
     player_name = gets.chomp
     valid_player_name(player_name, current_player)
   end
@@ -27,7 +27,7 @@ class ConsoleInOut
   end
 
   def set_board_size
-    @output.write('Please enter the length of a board side')
+    write('Please enter the length of a board side')
     board_size = gets.chomp.to_i
     valid_board_size(board_size)
   end
@@ -37,7 +37,7 @@ class ConsoleInOut
   end
 
   def select_move(max_turns)
-    puts "Please enter a free number from 1-#{max_turns}"
+    write("Please enter a free number from 1-#{max_turns}")
     player_input = gets.chomp.to_i
     valid_player_input(player_input, max_turns)
   end

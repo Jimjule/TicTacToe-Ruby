@@ -34,7 +34,7 @@ class Game
   end
 
   def turn_loop
-    puts "#{current_player.id}'s move"
+    @inOut.write("#{current_player.id}'s move")
     submit_move
     @winner = @board.check_for_winner(current_player.mark)
     @turn_count += 1 unless @winner
