@@ -1,5 +1,5 @@
 class Board
-  attr_reader(:current_player, :board_middle, :turn_count, :max_turns, :board_size)
+  attr_reader(:current_player, :board_middle, :turn_count, :max_turns, :board_size, :inOut)
   BOARD_ROW = '-'
   BOARD_COLUMM = '|'
   BEGINNING_AND_END_LENGTH = 2
@@ -7,7 +7,8 @@ class Board
   ITERATE_FALLING = 1
   ITERATE_FROM_START = 0
 
-  def initialize(board_size = 3, command_line_application = true)
+  def initialize(inOut, board_size = 3, command_line_application = true)
+    @inOut = inOut
     @board = []
     @board_middle = []
     @board_size = board_size
@@ -30,7 +31,7 @@ class Board
     system('clear')
     reset_board
     assemble_board
-    puts @board
+    @inOut.write(@board)
   end
 
   def check_square_is_free(row, column)

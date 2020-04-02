@@ -1,15 +1,15 @@
 require_relative 'player'
 require_relative 'board'
-require_relative 'input'
+require_relative 'consoleInOut'
 
 class Game
-  attr_reader :player_x, :player_o, :board, :input, :winner
+  attr_reader :player_x, :player_o, :board, :inOut, :winner
 
-  def initialize(command_line_application = true, input, player_x, player_o, board)
+  def initialize(command_line_application = true, inOut, player_x, player_o, board)
     @command_line_application = command_line_application
     welcome
     @turn_count = 0
-    @input = input
+    @inOut = inOut
     @player_x = player_x
     @player_o = player_o
     @board = board
@@ -41,7 +41,7 @@ class Game
   end
 
   def submit_move
-    player_input = @input.select_move(@board.max_turns)
+    player_input = @inOut.select_move(@board.max_turns)
     @board.make_move(current_player.mark, row = (player_input - 1) / @board.board_size, column = (player_input - 1) % @board.board_size)
     @board.view_board if @command_line_application
   end

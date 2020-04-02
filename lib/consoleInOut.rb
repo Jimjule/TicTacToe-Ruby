@@ -1,4 +1,21 @@
 class ConsoleInOut
+  attr_reader :input, :output
+
+  def initialize(input, output)
+    @input = input
+    @output = output
+  end
+
+  def write(to_write)
+    if @output.kind_of?(Array)
+      @output.push(to_write)
+    elsif @output.kind_of?(String)
+      @output = to_write
+    else
+      @output.puts(to_write)
+    end
+  end
+
   def get_player_name(current_player)
     puts "Please enter a name for #{current_player}"
     player_name = gets.chomp
