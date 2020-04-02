@@ -1,10 +1,6 @@
 require 'consoleInOut'
 
 describe ConsoleInOut do
-  it 'Does not throw errors' do
-    expect { ConsoleInOut.new(STDIN, STDOUT) }.not_to raise_error
-  end
-
   it 'Can mock input and output' do
     input = "It's a string!"
     output = []
