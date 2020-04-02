@@ -7,7 +7,7 @@ describe Game do
   end
 
   it "Can call X 'Player 1'" do
-    board = Board.new(@input, 3, true)
+    board = Board.new(@input, 3)
     player_x = Player.new('Player 1', 'X')
     player_o = Player.new('Player 2', 'O')
     game = Game.new(@input, player_x, player_o, board)
