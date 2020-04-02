@@ -1,4 +1,4 @@
-class Input
+class ConsoleInOut
   def get_player_name(current_player)
     puts "Please enter a name for #{current_player}"
     player_name = gets.chomp

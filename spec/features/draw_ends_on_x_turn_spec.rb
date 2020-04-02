@@ -5,7 +5,7 @@ require 'board'
 describe Game do
 
   before(:each) do
-    @input = Input.new
+    @input = ConsoleInOut.new
     @player_x = Player.new('Player 1', 'X')
     @player_o = Player.new('Player 2', 'O')
     @board = Board.new(3, true)
