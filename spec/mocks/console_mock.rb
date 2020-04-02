@@ -22,7 +22,7 @@ class ConsoleMock
 
   def get_player_name(current_player)
     write("Please enter a name for #{current_player}")
-    player_name = gets.chomp
+    player_name = get_input.chomp
     valid_player_name(player_name, current_player)
   end
 
@@ -32,7 +32,7 @@ class ConsoleMock
 
   def set_board_size
     write('Please enter the length of a board side')
-    board_size = gets.chomp.to_i
+    board_size = get_input.chomp.to_i
     valid_board_size(board_size)
   end
 
@@ -42,7 +42,7 @@ class ConsoleMock
 
   def select_move(max_turns)
     write("Please enter a free number from 1-#{max_turns}")
-    player_input = gets.chomp.to_i
+    player_input = get_input.chomp.to_i
     valid_player_input(player_input, max_turns)
   end
 

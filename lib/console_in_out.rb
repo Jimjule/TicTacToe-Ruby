@@ -22,7 +22,7 @@ class ConsoleInOut
 
   def get_player_name(current_player)
     write("Please enter a name for #{current_player}")
-    player_name = gets.chomp
+    player_name = get_input.chomp
     valid_player_name(player_name, current_player)
   end
 
