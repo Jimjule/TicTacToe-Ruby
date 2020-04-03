@@ -13,7 +13,7 @@ describe ConsoleInOut do
     input = "It's a string!"
     output = []
     console_in_out = ConsoleMock.new(input, output)
-    console_in_out.write(input)
+    console_in_out.print(input)
     expect(console_in_out.output[0]).to eq("It's a string!")
   end
 

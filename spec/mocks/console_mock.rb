@@ -10,18 +10,18 @@ class ConsoleMock
     @input
   end
 
-  def write(to_write)
+  def print(to_print)
     if @output.kind_of?(Array)
-      @output.push(to_write)
+      @output.push(to_print)
     elsif @output.kind_of?(String)
-      @output = to_write
+      @output = to_print
     else
-      @output.puts(to_write)
+      @output.puts(to_print)
     end
   end
 
   def get_player_name(current_player)
-    write("Please enter a name for #{current_player}")
+    print("Please enter a name for #{current_player}")
     player_name = get_input.chomp
     valid_player_name(player_name, current_player)
   end
@@ -31,7 +31,7 @@ class ConsoleMock
   end
 
   def set_board_size
-    write('Please enter the length of a board side')
+    print('Please enter the length of a board side')
     board_size = get_input.chomp.to_i
     valid_board_size(board_size)
   end
@@ -41,7 +41,7 @@ class ConsoleMock
   end
 
   def select_move(max_turns)
-    write("Please enter a free number from 1-#{max_turns}")
+    print("Please enter a free number from 1-#{max_turns}")
     player_input = get_input.chomp.to_i
     valid_player_input(player_input, max_turns)
   end

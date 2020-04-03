@@ -14,7 +14,7 @@ describe Board do
   it 'Makes a move and checks that the square is occupied' do
     board = Board.new(@console_in_out)
     board.make_move('X', 1, 1)
-    expect(board.check_square_is_free(1, 1)).to eq(false)
+    expect(board.is_square_free?(1, 1)).to eq(false)
   end
 
   it 'Views the board' do
@@ -31,6 +31,6 @@ describe Board do
 
   it 'Checks square is free' do
     board = Board.new(@console_in_out)
-    expect(board.check_square_is_free(1, 1)).to eq(true)
+    expect(board.is_square_free?(1, 1)).to eq(true)
   end
 end

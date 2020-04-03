@@ -31,15 +31,15 @@ class Board
     system('clear')
     reset_board
     assemble_board
-    @inOut.write(@board)
+    @inOut.print(@board)
   end
 
-  def check_square_is_free(row, column)
+  def is_square_free?(row, column)
     @board_middle[row][column] != 'X' && @board_middle[row][column] != 'O'
   end
 
   def make_move(current_player, row, column)
-    @board_middle[row][column] = current_player if check_square_is_free(row, column)
+    @board_middle[row][column] = current_player if is_square_free?(row, column)
   end
 
   def check_for_winner(current_player)
