@@ -37,4 +37,18 @@ describe ConsoleInOut do
     console_in_out = ConsoleMock.new(input, output)
     expect(console_in_out.select_move).to eq 8
   end
+
+  it 'Get boolean, y returns true' do
+    input = 'y'
+    output = []
+    console_in_out = ConsoleMock.new(input, output)
+    expect(console_in_out.play_against_computer?(input)).to eq true
+  end
+
+  it 'Get boolean, anything else returns false' do
+    input = 'nope'
+    output = []
+    console_in_out = ConsoleMock.new(input, output)
+    expect(console_in_out.play_against_computer?(input)).to eq false
+  end
 end

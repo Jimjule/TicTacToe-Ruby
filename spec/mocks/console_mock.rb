@@ -20,6 +20,10 @@ class ConsoleMock
     end
   end
 
+  def play_against_computer?(choice)
+    choice == 'y' ? true : false
+  end
+
   def get_player_name(current_player)
     print("Please enter a name for #{current_player}")
     player_name = get_input.chomp
