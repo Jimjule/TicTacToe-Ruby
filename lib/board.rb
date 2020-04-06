@@ -1,5 +1,7 @@
+require_relative 'square'
+
 class Board
-  attr_reader(:current_player, :board_middle, :turn_count, :max_turns, :board_size, :inOut)
+  attr_reader :current_player, :board_middle, :turn_count, :max_turns, :board_size, :inOut, :squares
   BOARD_ROW = '-'
   BOARD_COLUMM = '|'
   BEGINNING_AND_END_LENGTH = 2
@@ -10,9 +12,11 @@ class Board
   def initialize(inOut, board_size = 3)
     @inOut = inOut
     @board = []
+    @squares = []
     @board_middle = []
     @board_size = board_size
     @max_turns = board_size * board_size
+    set_squares
     set_board
   end
 
@@ -22,7 +26,10 @@ class Board
   end
 
   def set_middle_sections
-    middle = * (1..@max_turns)
+    middle = []
+    for square in @squares do
+      middle.push(square.value)
+    end
     middle = middle.map(&:to_s)
     @board_middle = middle.each_slice(@board_size).to_a
   end
@@ -30,16 +37,20 @@ class Board
   def view_board
     system('clear')
     reset_board
+    set_middle_sections
     assemble_board
     @inOut.print(@board)
   end
-
-  def is_square_free?(row, column)
-    @board_middle[row][column] != 'X' && @board_middle[row][column] != 'O'
+  
+  def is_square_free?(square)
+    puts @squares[square].is_square_free?
+    @squares[square].is_square_free?
   end
 
-  def make_move(current_player, row, column)
-    @board_middle[row][column] = current_player if is_square_free?(row, column)
+  def make_move(current_player, square)
+    puts @squares[square].value
+    @squares[square].mark(current_player)
+    puts @squares[square].value
   end
 
   def check_for_winner(current_player)
@@ -49,6 +60,14 @@ class Board
   end
 
   private
+
+  def set_squares
+    i = 1
+    until i > @max_turns
+      @squares.push(Square.new(i))
+      i += 1
+    end
+  end
 
   def board_top_and_bottom
     board_top_and_bottom = []
