@@ -24,8 +24,8 @@ player_1 = get_player_name('Player X')
 player_2 = get_player_name('Player O')
 board_size = get_board_size
 
-player_x = Player.new(player_1, 'X')
-player_o = Player.new(player_2, 'O')
+player_x = Player.new(player_1, 'X', @inOut)
+player_o = Player.new(player_2, 'O', @inOut)
 board = Board.new(@inOut, @validate, board_size)
 
 game = Game.new(@inOut, player_x, player_o, board)

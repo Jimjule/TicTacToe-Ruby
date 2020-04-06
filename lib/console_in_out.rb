@@ -30,8 +30,7 @@ class ConsoleInOut
     board_size = gets.chomp.to_i
   end
 
-  def select_move(max_turns)
-    print("Please enter a free number from 1-#{max_turns}")
+  def select_move
     player_input = gets.chomp.to_i
   end
 end

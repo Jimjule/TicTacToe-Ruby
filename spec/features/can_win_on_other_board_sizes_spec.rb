@@ -5,8 +5,8 @@ describe Game do
   before(:each) do
     @inOut = ConsoleInOut.new('', '')
     @validate = Validate.new
-    @player_x = Player.new('Player 1', 'X')
-    @player_o = Player.new('Player 2', 'O')
+    @player_x = Player.new('Player 1', 'X', @inOut)
+    @player_o = Player.new('Player 2', 'O', @inOut)
   end
 
   it 'Win with row 4x4' do

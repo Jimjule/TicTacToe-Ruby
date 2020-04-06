@@ -1,13 +1,22 @@
 require 'player'
+require 'console_in_out'
 
 describe Player do
-  it 'Stores player name' do
-    player = Player.new('Player 1', 'X')
-    expect(player.id).to eq('Player 1')
+
+  before(:each) do
+    inOut = ConsoleMock.new('3', '')
+    @player = Player.new('Player 1', 'X', inOut)
   end
 
   it 'Stores player name' do
-    player = Player.new('Player 1', 'X')
-    expect(player.mark).to eq('X')
+    expect(@player.id).to eq('Player 1')
+  end
+
+  it 'Stores player name' do
+    expect(@player.mark).to eq('X')
+  end
+
+  it 'Can make a move' do
+    expect(@player.make_move).to eq(3)
   end
 end
