@@ -43,18 +43,6 @@ class Game
     @inOut.select_move(@board.max_turns)
   end
 
-  # def submit_move
-  #   valid_move = false
-  #   until(valid_move)
-  #     player_input = @inOut.select_move(@board.max_turns)
-  #     row = (player_input - 1) / @board.board_size
-  #     column = (player_input - 1) % @board.board_size
-  #     valid_move = @board.is_square_free?(row, column)
-  #   end
-  #   @board.make_move(current_player.mark, row, column)
-  #   @board.view_board
-  # end
-
   def submit_move
     valid_move = false
     until(valid_move)
