@@ -17,6 +17,6 @@ describe Player do
   end
 
   it 'Can make a move' do
-    expect(@player.make_move).to eq(3)
+    expect(@player.make_move(9)).to eq(3)
   end
 end

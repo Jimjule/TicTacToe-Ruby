@@ -24,7 +24,7 @@ class ConsoleMock
     choice == 'y' ? true : false
   end
 
-  def get_player_name(current_player)
+  def get_string(current_player)
     print("Please enter a name for #{current_player}")
     player_name = get_input.chomp
   end

@@ -42,8 +42,8 @@ class Game
   def submit_move
     valid_move = false
     until(valid_move)
-      print("Please enter a free number from 1-#{@board.max_turns}")
-      player_input = current_player.make_move
+      print("Please enter a free number from 1-#{@board.max_turns}\n")
+      player_input = current_player.make_move(@board.max_turns)
       valid_move = @board.is_square_free?(player_input - 1)
     end
     @board.make_move(current_player.mark, player_input - 1)

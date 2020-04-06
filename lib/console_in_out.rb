@@ -24,8 +24,7 @@ class ConsoleInOut
     choice == 'y' ? true : false
   end
 
-  def get_player_name(current_player)
-    print("Please enter a name for #{current_player}")
+  def get_string
     player_name = get_input.chomp
   end
 

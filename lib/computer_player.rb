@@ -6,7 +6,7 @@ class ComputerPlayer
     @mark = 'O'
   end
 
-  def make_move(max_turns, seed = rand)
+  def make_move(max_turns)
     rand(max_turns)
   end
 end

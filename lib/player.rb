@@ -6,7 +6,7 @@ class Player
     @mark = mark
   end
 
-  def make_move
+  def make_move(max_turns)
     @inOut.select_move
   end
 end
