@@ -1,11 +1,14 @@
 require 'game'
+require 'board'
+require 'validate'
 
 describe Game do
   before(:each) do
     inOut = ConsoleInOut.new('', '')
+    validate = Validate.new
     player_x = Player.new('Player 1', 'X')
     player_o = Player.new('Player 2', 'O')
-    board = Board.new(inOut, 3)
+    board = Board.new(inOut, validate)
     @game = Game.new(inOut, player_x, player_o, board)
   end
 

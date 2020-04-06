@@ -1,9 +1,32 @@
 require './lib/game.rb'
+require './lib/validate.rb'
 
-inOut = ConsoleInOut.new(STDIN, STDOUT)
-player_x = Player.new(inOut.get_player_name('X'), 'X')
-player_o = Player.new(inOut.get_player_name('O'), 'O')
-board = Board.new(inOut, inOut.set_board_size)
+@inOut = ConsoleInOut.new(STDIN, STDOUT)
+@validate = Validate.new
 
-game = Game.new(inOut, player_x, player_o, board)
+def get_player_name(mark)
+  player = ''
+  until @validate.is_valid_player_name?(player)
+    player = @inOut.get_player_name(mark)
+  end
+  player
+end
+
+def get_board_size
+  board_size = ''
+  until @validate.is_valid_board_size?(board_size)
+    board_size = @inOut.set_board_size
+  end
+  board_size
+end
+
+player_1 = get_player_name('Player X')
+player_2 = get_player_name('Player O')
+board_size = get_board_size
+
+player_x = Player.new(player_1, 'X')
+player_o = Player.new(player_2, 'O')
+board = Board.new(@inOut, @validate, board_size)
+
+game = Game.new(@inOut, player_x, player_o, board)
 game.go

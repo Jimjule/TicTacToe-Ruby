@@ -21,7 +21,8 @@ describe Game do
   end
 
   it 'Asks for board size input' do
-    board = Board.new(@inOut, 4)
+    validate = Validate.new
+    board = Board.new(@inOut, validate, 4)
     game = Game.new(@inOut, @player_x, @player_o, board)
     expect(game.board.board_size).to eq 4
   end
