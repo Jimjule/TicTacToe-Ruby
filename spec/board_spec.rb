@@ -7,7 +7,7 @@ describe Board do
   let(:board) { Board.new(console_in_out, validate) }
 
   it 'Displays a board' do
-    expect(board.inOut.output).to eq([["-----"], "|123|", "|456|", "|789|", ["-----"]])
+    expect(board.in_out.output).to eq([["-----"], "|123|", "|456|", "|789|", ["-----"]])
   end
 
   it 'Contains a number of squares equal to max turns' do
@@ -33,7 +33,7 @@ describe Board do
 
   it 'Views the board' do
     board.view_board
-    expect(board.inOut.output.last).to eq([["-----"], "|123|", "|456|", "|789|", ["-----"]])
+    expect(board.in_out.output.last).to eq([["-----"], "|123|", "|456|", "|789|", ["-----"]])
   end
 
   it 'Checks for a winner' do

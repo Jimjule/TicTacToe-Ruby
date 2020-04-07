@@ -7,7 +7,7 @@ class Console_in_out
   end
 
   def get_input
-    @input.gets
+    @input.gets.chomp
   end
 
   def print(to_print)
@@ -25,7 +25,7 @@ class Console_in_out
   end
 
   def get_string
-    player_name = get_input.chomp
+    player_name = get_input
   end
 
   def set_board_size

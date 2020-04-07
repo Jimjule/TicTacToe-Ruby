@@ -1,9 +1,9 @@
 class Game
-  attr_reader :player_x, :player_o, :board, :inOut, :winner
+  attr_reader :player_x, :player_o, :board, :in_out, :winner
 
-  def initialize(inOut, player_x, player_o, board)
+  def initialize(in_out, player_x, player_o, board)
     @turn_count = 0
-    @inOut = inOut
+    @in_out = in_out
     welcome
     @player_x = player_x
     @player_o = player_o
@@ -25,11 +25,11 @@ class Game
   private
 
   def welcome
-    @inOut.print('Welcome to TicTacToe')
+    @in_out.print('Welcome to TicTacToe')
   end
 
   def turn_loop
-    @inOut.print("#{current_player.id}'s move")
+    @in_out.print("#{current_player.id}'s move")
     submit_move
     @winner = @board.check_for_winner(current_player.mark)
     @turn_count += 1 unless @winner
@@ -43,7 +43,7 @@ class Game
       valid_move = @board.is_square_free?(player_input)
     end
     @board.make_move(current_player.mark, player_input)
-    @board.view_board
+    @in_out.print(@board.view_board)
   end
 
   def game_is_over
@@ -51,7 +51,7 @@ class Game
   end
 
   def announce_winner
-    @inOut.print("#{current_player.id} is the winner!") if @winner
-    @inOut.print('Draw!') unless @winner
+    @in_out.print("#{current_player.id} is the winner!") if @winner
+    @in_out.print('Draw!') unless @winner
   end
 end

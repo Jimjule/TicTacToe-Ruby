@@ -3,8 +3,8 @@ require 'console_in_out'
 
 describe Human_player do
   let(:player_move) { '3' }
-  let(:inOut) { ConsoleMock.new(player_move, '') }
-  let(:player) { Human_player.new('Player 1', 'X', inOut) }
+  let(:in_out) { ConsoleMock.new(player_move, '') }
+  let(:player) { Human_player.new('Player 1', 'X', in_out) }
 
   it 'Knows player name' do
     expect(player.id).to eq('Player 1')
