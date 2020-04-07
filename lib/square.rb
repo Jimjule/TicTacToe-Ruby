@@ -13,7 +13,7 @@ class Square
       @value = player_mark
     end
   end
-  
+
   def is_square_free?
     @square_is_free
   end

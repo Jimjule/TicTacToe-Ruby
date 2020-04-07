@@ -4,7 +4,6 @@ require 'board'
 require 'validate'
 
 describe Game do
-
   it 'Ends with player X' do
     @inOut = ConsoleInOut.new('', '')
     validate = Validate.new

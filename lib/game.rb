@@ -1,7 +1,3 @@
-require_relative 'human_player'
-require_relative 'board'
-require_relative 'console_in_out'
-
 class Game
   attr_reader :player_x, :player_o, :board, :inOut, :winner
 
@@ -41,7 +37,7 @@ class Game
 
   def submit_move
     valid_move = false
-    until(valid_move)
+    until (valid_move)
       print("Please enter a free number from 1-#{@board.max_turns}\n")
       player_input = current_player.make_move(@board.max_turns)
       valid_move = @board.is_square_free?(player_input - 1)

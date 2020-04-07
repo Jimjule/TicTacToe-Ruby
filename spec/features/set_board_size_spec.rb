@@ -2,7 +2,6 @@ require 'board'
 require 'validate'
 
 describe Board do
-
   before(:each) do
     @inOut = ConsoleInOut.new('', '')
     @validate = Validate.new

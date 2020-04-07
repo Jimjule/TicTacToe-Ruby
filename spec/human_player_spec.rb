@@ -2,7 +2,6 @@ require 'human_player'
 require 'console_in_out'
 
 describe HumanPlayer do
-
   before(:each) do
     inOut = ConsoleMock.new('3', '')
     @player = HumanPlayer.new('Player 1', 'X', inOut)
@@ -12,7 +11,7 @@ describe HumanPlayer do
     expect(@player.id).to eq('Player 1')
   end
 
-  it 'Stores player name' do
+  it 'Stores player mark' do
     expect(@player.mark).to eq('X')
   end
 

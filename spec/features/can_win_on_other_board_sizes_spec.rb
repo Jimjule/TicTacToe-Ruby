@@ -1,7 +1,6 @@
 require 'game'
 
 describe Game do
-
   before(:each) do
     @inOut = ConsoleInOut.new('', '')
     @validate = Validate.new

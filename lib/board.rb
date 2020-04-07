@@ -42,7 +42,7 @@ class Board
     assemble_board
     @inOut.print(@board)
   end
-  
+
   def is_square_free?(square_number)
     if @validate.is_valid_player_input?(square_number, @max_turns)
       @squares[square_number].is_square_free?
