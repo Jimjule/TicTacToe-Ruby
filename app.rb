@@ -5,10 +5,10 @@ require './lib/computer_player.rb'
 @inOut = ConsoleInOut.new(STDIN, STDOUT)
 @validate = Validate.new
 
-def get_player_name(mark)
+def get_player_name(which_player)
   player = ''
   until @validate.is_valid_player_name?(player)
-    @inOut.print("Please enter a name for #{mark}\n")
+    @inOut.print("Please enter a name for #{which_player}\n")
     player = @inOut.get_string
   end
   player

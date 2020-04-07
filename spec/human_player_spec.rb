@@ -7,11 +7,11 @@ describe HumanPlayer do
     @player = HumanPlayer.new('Player 1', 'X', inOut)
   end
 
-  it 'Stores player name' do
+  it 'Knows player name' do
     expect(@player.id).to eq('Player 1')
   end
 
-  it 'Stores player mark' do
+  it 'Knows their mark' do
     expect(@player.mark).to eq('X')
   end
 
