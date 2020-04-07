@@ -1,11 +1,11 @@
-require 'player'
+require 'human_player'
 require 'console_in_out'
 
-describe Player do
+describe HumanPlayer do
 
   before(:each) do
     inOut = ConsoleMock.new('3', '')
-    @player = Player.new('Player 1', 'X', inOut)
+    @player = HumanPlayer.new('Player 1', 'X', inOut)
   end
 
   it 'Stores player name' do

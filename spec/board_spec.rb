@@ -40,7 +40,7 @@ describe Board do
   end
 
   it 'Checks for a winner' do
-    player = Player.new('Player 1', 'X', @console_in_out)
+    player = HumanPlayer.new('Player 1', 'X', @console_in_out)
     expect(@board.check_for_winner(player)).to eq(false)
   end
 end

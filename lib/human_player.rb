@@ -1,4 +1,4 @@
-class Player
+class HumanPlayer
   attr_reader :id, :mark
   def initialize(id, mark, inOut)
     @inOut = inOut

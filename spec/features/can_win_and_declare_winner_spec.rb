@@ -6,8 +6,8 @@ describe Game do
   before(:each) do
     inOut = ConsoleInOut.new('', '')
     validate = Validate.new
-    player_x = Player.new('Player 1', 'X', inOut)
-    player_o = Player.new('Player 2', 'O', inOut)
+    player_x = HumanPlayer.new('Player 1', 'X', inOut)
+    player_o = HumanPlayer.new('Player 2', 'O', inOut)
     board = Board.new(inOut, validate)
     @game = Game.new(inOut, player_x, player_o, board)
   end

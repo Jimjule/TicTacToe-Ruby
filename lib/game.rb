@@ -1,4 +1,4 @@
-require_relative 'player'
+require_relative 'human_player'
 require_relative 'board'
 require_relative 'console_in_out'
 

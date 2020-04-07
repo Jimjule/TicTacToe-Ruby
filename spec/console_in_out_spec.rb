@@ -21,7 +21,7 @@ describe ConsoleInOut do
     input = 'A name'
     output = []
     console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.get_string(Player.new('1', 'X', console_in_out))).to eq("A name")
+    expect(console_in_out.get_string(HumanPlayer.new('1', 'X', console_in_out))).to eq("A name")
   end
 
   it 'Sets board size' do

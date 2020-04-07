@@ -25,12 +25,12 @@ end
 def select_opponent
   @inOut.print("Would you like to play against the computer? (y/N)\n")
   player_2 = @inOut.play_against_computer?(@inOut.get_string)
-  player_2 == true ? ComputerPlayer.new(@inOut) : Player.new(get_player_name('Player O'), 'O', @inOut) 
+  player_2 == true ? ComputerPlayer.new(@inOut) : HumanPlayer.new(get_player_name('Player O'), 'O', @inOut) 
 end
 
 
 player_1 = get_player_name('Player X')
-player_x = Player.new(player_1, 'X', @inOut)
+player_x = HumanPlayer.new(player_1, 'X', @inOut)
 player_o = select_opponent
 
 board_size = get_board_size

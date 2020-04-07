@@ -4,8 +4,8 @@ describe Game do
 
   before(:each) do
     @inOut = ConsoleInOut.new('', '')
-    @player_x = Player.new('Player 1', 'X', @inOut)
-    @player_o = Player.new('Player 2', 'O', @inOut)
+    @player_x = HumanPlayer.new('Player 1', 'X', @inOut)
+    @player_o = HumanPlayer.new('Player 2', 'O', @inOut)
   end
 
   it 'Returns current player X' do

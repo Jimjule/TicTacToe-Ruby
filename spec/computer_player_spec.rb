@@ -3,7 +3,7 @@ require 'computer_player'
 describe ComputerPlayer do
 
   before(:each) do
-    @computer_player = ComputerPlayer.new
+    @computer_player = ComputerPlayer.new(inOut)
   end
 
   it 'Has a default name' do
