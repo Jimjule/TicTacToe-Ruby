@@ -3,7 +3,8 @@ require 'console_in_out'
 
 describe HumanPlayer do
   before(:each) do
-    inOut = ConsoleMock.new('3', '')
+    player_move = '3'
+    inOut = ConsoleMock.new(player_move, '')
     @player = HumanPlayer.new('Player 1', 'X', inOut)
   end
 
