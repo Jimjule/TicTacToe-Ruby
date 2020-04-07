@@ -2,7 +2,7 @@ require 'board'
 require 'validate'
 
 describe Board do
-  let(:console_in_out) { ConsoleInOut.new('', '') }
+  let(:console_in_out) { Console_in_out.new('', '') }
   let(:validate) { Validate.new }
   let(:board) { Board.new(console_in_out, validate) }
 
@@ -37,7 +37,7 @@ describe Board do
   end
 
   it 'Checks for a winner' do
-    player = HumanPlayer.new('Player 1', 'X', console_in_out)
+    player = Human_player.new('Player 1', 'X', console_in_out)
     expect(board.check_for_winner(player)).to eq(false)
   end
 end

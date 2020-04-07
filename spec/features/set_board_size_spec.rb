@@ -3,7 +3,7 @@ require 'validate'
 
 describe Board do
   before(:each) do
-    @inOut = ConsoleInOut.new('', '')
+    @inOut = Console_in_out.new('', '')
     @validate = Validate.new
   end
 

@@ -1,4 +1,4 @@
-class ConsoleInOut
+class Console_in_out
   attr_reader :input, :output
 
   def initialize(input, output)

@@ -1,4 +1,4 @@
-class ComputerPlayer
+class Computer_player
   attr_reader :id, :mark
   def initialize(inOut)
     @id = 'Computer'
@@ -6,6 +6,6 @@ class ComputerPlayer
   end
 
   def make_move(max_turns)
-    rand(max_turns)
+    rand(max_turns) - 1
   end
 end
