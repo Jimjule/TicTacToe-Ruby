@@ -1,11 +1,9 @@
 require 'computer_player'
-require 'console_in_out'
 
 describe ComputerPlayer do
 
   before(:each) do
-    inOut = ConsoleMock.new('3', '')
-    @computer_player = ComputerPlayer.new(inOut)
+    @computer_player = ComputerPlayer.new
   end
 
   it 'Has a default name' do

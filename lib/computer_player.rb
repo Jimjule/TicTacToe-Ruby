@@ -1,7 +1,6 @@
 class ComputerPlayer
   attr_reader :id, :mark
-  def initialize(inOut)
-    @inOut = inOut
+  def initialize
     @id = 'Computer'
     @mark = 'O'
   end
