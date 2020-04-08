@@ -43,11 +43,7 @@ class Board
   end
 
   def is_square_free?(square_number)
-    if @validate.is_valid_player_input?(square_number, @max_turns)
-      @squares[square_number].is_square_free?
-    else
-      false
-    end
+    @squares[square_number].is_square_free?
   end
 
   def make_move(current_player, square)

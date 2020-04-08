@@ -19,4 +19,10 @@ describe Human_player do
     allow(input).to receive(:gets).and_return('3')
     expect(player.make_move(board)).to eq(2)
   end
+
+  it 'Does not submit squares that do no exist' do
+    board = Board.new(Validate.new)
+    allow(input).to receive(:gets).and_return('-30', '12', '3')
+    expect(player.make_move(board)).to eq(2)
+  end
 end
