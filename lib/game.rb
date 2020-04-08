@@ -1,4 +1,4 @@
-require_relative 'player'
+require_relative 'human_player'
 require_relative 'board'
 require_relative 'console_in_out'
 
@@ -39,14 +39,11 @@ class Game
     @turn_count += 1 unless @winner
   end
 
-  def get_player_move
-    @inOut.select_move(@board.max_turns)
-  end
-
   def submit_move
     valid_move = false
     until(valid_move)
-      player_input = @inOut.select_move(@board.max_turns)
+      print("Please enter a free number from 1-#{@board.max_turns}\n")
+      player_input = current_player.make_move(@board.max_turns)
       valid_move = @board.is_square_free?(player_input - 1)
     end
     @board.make_move(current_player.mark, player_input - 1)

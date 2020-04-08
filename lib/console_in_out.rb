@@ -20,8 +20,11 @@ class ConsoleInOut
     end
   end
 
-  def get_player_name(current_player)
-    print("Please enter a name for #{current_player}")
+  def play_against_computer?(choice)
+    choice == 'y' ? true : false
+  end
+
+  def get_string
     player_name = get_input.chomp
   end
 
@@ -30,8 +33,7 @@ class ConsoleInOut
     board_size = gets.chomp.to_i
   end
 
-  def select_move(max_turns)
-    print("Please enter a free number from 1-#{max_turns}")
+  def select_move
     player_input = gets.chomp.to_i
   end
 end

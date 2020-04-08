@@ -4,9 +4,9 @@ require 'validate'
 describe Board do
 
   before(:each) do
-    console_in_out = ConsoleInOut.new('', '')
+    @console_in_out = ConsoleInOut.new('', '')
     validate = Validate.new
-    @board = Board.new(console_in_out, validate)
+    @board = Board.new(@console_in_out, validate)
   end
 
   it 'Displays a board' do
@@ -40,7 +40,7 @@ describe Board do
   end
 
   it 'Checks for a winner' do
-    player = Player.new('Player 1', 'X')
+    player = HumanPlayer.new('Player 1', 'X', @console_in_out)
     expect(@board.check_for_winner(player)).to eq(false)
   end
 end
