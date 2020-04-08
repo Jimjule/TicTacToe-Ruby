@@ -12,20 +12,20 @@ describe Game do
   end
 
   it 'Returns current player X' do
-    board = Board.new(@in_out, 3)
+    board = Board.new(3)
     game = Game.new(@in_out, @player_x, @player_o, board)
     expect(game.current_player).to eq(@player_x)
   end
 
   it 'Displays a board' do
-    board = Board.new(@in_out, 3)
+    board = Board.new(3)
     game = Game.new(@in_out, @player_x, @player_o, board)
-    expect(@in_out.output.string).to eq("-----\n|123|\n|456|\n|789|\n-----\nWelcome to TicTacToe\n")
+    expect(@in_out.output.string).to eq("Welcome to TicTacToe\n")
   end
 
   it 'Asks for board size input' do
     validate = Validate.new
-    board = Board.new(@in_out, validate, 4)
+    board = Board.new(validate, 4)
     game = Game.new(@in_out, @player_x, @player_o, board)
     expect(game.board.board_size).to eq 4
   end

@@ -37,7 +37,7 @@ player_o = select_opponent
 
 board_size = get_board_size
 
-board = Board.new(@in_out, @validate, board_size)
+board = Board.new(@validate, board_size)
 
 game = Game.new(@in_out, player_x, player_o, board)
 game.go

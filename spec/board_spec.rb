@@ -2,13 +2,11 @@ require 'board'
 require 'validate'
 
 describe Board do
-  let(:output) { StringIO.new }
-  let(:console_in_out) { Console_in_out.new('', output) }
   let(:validate) { Validate.new }
-  let(:board) { Board.new(console_in_out, validate) }
+  let(:board) { Board.new(validate) }
 
-  it 'Displays a board' do
-    expect(board.in_out.output.string).to eq("-----\n|123|\n|456|\n|789|\n-----\n")
+  it 'Makes a board' do
+    expect(board.view_board).to eq([["-----"], "|123|", "|456|", "|789|", ["-----"]])
   end
 
   it 'Contains a number of squares equal to max turns' do
@@ -33,7 +31,7 @@ describe Board do
   end
 
   it 'Checks for a winner' do
-    player = Human_player.new('Player 1', 'X', console_in_out)
+    player = Human_player.new('Player 1', 'X', 'console')
     expect(board.check_for_winner(player)).to eq(false)
   end
 end

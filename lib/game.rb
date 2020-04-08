@@ -12,6 +12,7 @@ class Game
   end
 
   def go
+    @in_out.print(@board.view_board)
     until game_is_over
       turn_loop
     end

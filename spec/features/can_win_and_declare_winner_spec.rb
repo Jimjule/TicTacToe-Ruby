@@ -11,7 +11,7 @@ describe Game do
     validate = Validate.new
     player_x = Human_player.new('Player 1', 'X', in_out)
     player_o = Human_player.new('Player 2', 'O', in_out)
-    board = Board.new(in_out, validate)
+    board = Board.new(validate)
     @game = Game.new(in_out, player_x, player_o, board)
   end
 

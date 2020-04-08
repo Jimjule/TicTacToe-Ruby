@@ -1,7 +1,7 @@
 require_relative 'square'
 
 class Board
-  attr_reader :current_player, :board_middle, :turn_count, :max_turns, :board_size, :in_out, :squares
+  attr_reader :current_player, :board_middle, :turn_count, :max_turns, :board_size, :squares
   BOARD_ROW = '-'
   BOARD_COLUMM = '|'
   BEGINNING_AND_END_LENGTH = 2
@@ -9,8 +9,7 @@ class Board
   ITERATE_FALLING = 1
   ITERATE_FROM_START = 0
 
-  def initialize(in_out, validate, board_size = 3)
-    @in_out = in_out
+  def initialize(validate, board_size = 3)
     @validate = validate
     @board = []
     @squares = []
@@ -40,7 +39,7 @@ class Board
     reset_board
     set_middle_sections
     assemble_board
-    @in_out.print(@board)
+    @board
   end
 
   def is_square_free?(square_number)

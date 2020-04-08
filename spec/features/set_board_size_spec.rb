@@ -11,12 +11,12 @@ describe Board do
   end
 
   it 'Can make a 4x4 board' do
-    board = Board.new(@in_out, @validate, 4)
-    expect(board.in_out.output.string).to eq("------\n|1234|\n|5678|\n|9101112|\n|13141516|\n------\n")
+    board = Board.new(@validate, 4)
+    expect(board.view_board).to eq([["------"], "|1234|", "|5678|", "|9101112|", "|13141516|", ["------"]])
   end
 
   it 'A 9x9 board has 81 turns' do
-    board = Board.new(@in_out, @validate, 9)
+    board = Board.new(@validate, 9)
     expect(board.max_turns).to eq 81
   end
 end
