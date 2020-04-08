@@ -3,19 +3,14 @@ require './spec/mocks/console_mock.rb'
 
 describe Console_in_out do
 
+  let(:input) { StringIO.new }
   let(:output) { StringIO.new }
-
-  it 'Gets input' do
-    input = "It's a string!"
-    console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.get_input).to eq("It's a string!")
-  end
+  let(:console_in_out) { Console_in_out.new(input, output) }
 
   it 'Writes to output' do
     input = "It's a string!"
-    console_in_out = ConsoleMock.new(input, output)
     console_in_out.print(input)
-    expect(console_in_out.output.string).to eq("It's a string!")
+    expect(console_in_out.output.string).to eq("It's a string!\n")
   end
 
   it 'Gets player name' do

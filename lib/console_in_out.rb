@@ -30,7 +30,7 @@ class Console_in_out
 
   def set_board_size
     print('Please enter the length of a board side')
-    board_size = gets.chomp.to_i
+    board_size = get_input.to_i
   end
 
   def select_move
