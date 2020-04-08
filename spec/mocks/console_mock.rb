@@ -11,13 +11,7 @@ class ConsoleMock
   end
 
   def print(to_print)
-    if @output.kind_of?(Array)
-      @output.push(to_print)
-    elsif @output.kind_of?(String)
-      @output = to_print
-    else
-      @output.puts(to_print)
-    end
+    @output.write(to_print)
   end
 
   def play_against_computer?(choice)

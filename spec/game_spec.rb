@@ -1,8 +1,12 @@
 require 'game'
 
 describe Game do
+
+  let(:input) { StringIO.new }
+  let(:output) { StringIO.new }
+
   before(:each) do
-    @in_out = Console_in_out.new('', '')
+    @in_out = Console_in_out.new(input, output)
     @player_x = Human_player.new('Player 1', 'X', @in_out)
     @player_o = Human_player.new('Player 2', 'O', @in_out)
   end
@@ -16,7 +20,7 @@ describe Game do
   it 'Displays a board' do
     board = Board.new(@in_out, 3)
     game = Game.new(@in_out, @player_x, @player_o, board)
-    expect(@in_out.output.join).to include("-----|123||456||789|-----")
+    expect(@in_out.output.string).to eq("-----\n|123|\n|456|\n|789|\n-----\nWelcome to TicTacToe\n")
   end
 
   it 'Asks for board size input' do

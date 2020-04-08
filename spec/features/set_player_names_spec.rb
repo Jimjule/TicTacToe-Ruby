@@ -1,8 +1,11 @@
 require 'game'
 
 describe Game do
+
+  let(:output) { StringIO.new }
+
   before(:each) do
-    @in_out = Console_in_out.new('', '')
+    @in_out = Console_in_out.new('', output)
   end
 
   it "Can call X 'Player 1'" do
