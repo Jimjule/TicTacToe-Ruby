@@ -9,8 +9,9 @@ class Board
   ITERATE_FALLING = 1
   ITERATE_FROM_START = 0
 
-  def initialize(inOut, board_size = 3)
+  def initialize(inOut, validate, board_size = 3)
     @inOut = inOut
+    @validate = validate
     @board = []
     @squares = []
     @board_middle = []
@@ -42,15 +43,16 @@ class Board
     @inOut.print(@board)
   end
   
-  def is_square_free?(square)
-    puts @squares[square].is_square_free?
-    @squares[square].is_square_free?
+  def is_square_free?(square_number)
+    if @validate.is_valid_player_input?(square_number, @max_turns)
+      @squares[square_number].is_square_free?
+    else
+      false
+    end
   end
 
   def make_move(current_player, square)
-    puts @squares[square].value
     @squares[square].mark(current_player)
-    puts @squares[square].value
   end
 
   def check_for_winner(current_player)

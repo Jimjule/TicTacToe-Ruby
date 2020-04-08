@@ -21,14 +21,7 @@ describe ConsoleInOut do
     input = 'A name'
     output = []
     console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.get_player_name(Player.new('1', 'X'))).to eq("A name")
-  end
-
-  it 'Validates player name' do
-    input = 'A name'
-    output = []
-    console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.valid_player_name(input, Player.new('5', 'X'))).to eq(input)
+    expect(console_in_out.get_string(HumanPlayer.new('1', 'X', console_in_out))).to eq("A name")
   end
 
   it 'Sets board size' do
@@ -38,26 +31,24 @@ describe ConsoleInOut do
     expect(console_in_out.set_board_size).to eq(6)
   end
 
-  it 'Validates board size' do
-    input = []
-    output = []
-    console_in_out = ConsoleInOut.new(input, output)
-    console_in_out.valid_board_size(13)
-    expect(console_in_out).not_to receive(:set_board_size)
-  end
-
   it 'Gets a move' do
     input = '8'
     output = []
     console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.select_move(9)).to eq(8)
+    expect(console_in_out.select_move).to eq 8
   end
 
-  it 'Validates player move' do
-    input = ''
+  it 'Get boolean, y returns true' do
+    input = 'y'
     output = []
-    console_in_out = ConsoleInOut.new(input, output)
-    console_in_out.valid_player_input(5, 9)
-    expect(console_in_out).not_to receive(:select_move)
+    console_in_out = ConsoleMock.new(input, output)
+    expect(console_in_out.play_against_computer?(input)).to eq true
+  end
+
+  it 'Get boolean, anything else returns false' do
+    input = 'nope'
+    output = []
+    console_in_out = ConsoleMock.new(input, output)
+    expect(console_in_out.play_against_computer?(input)).to eq false
   end
 end
