@@ -12,7 +12,7 @@ def get_player_name(which_player)
   player_name = ''
   until @validate.is_valid_player_name?(player_name)
     @in_out.print("Please enter a name for #{which_player}\n")
-    player_name = @in_out.get_string
+    player_name = @in_out.get_input
   end
   player_name
 end
@@ -27,7 +27,7 @@ end
 
 def select_opponent
   @in_out.print("Would you like to play against the computer? (y/N)\n")
-  player_2 = @in_out.play_against_computer?(@in_out.get_string)
+  player_2 = @in_out.play_against_computer?(@in_out.get_input)
   player_2 == true ? Computer_player.new(@in_out) : Human_player.new(get_player_name('Player O'), 'O', @in_out)
 end
 

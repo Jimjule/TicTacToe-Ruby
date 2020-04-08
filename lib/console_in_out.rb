@@ -24,16 +24,12 @@ class Console_in_out
     choice == 'y' ? true : false
   end
 
-  def get_string
-    player_name = get_input
-  end
-
   def set_board_size
     print('Please enter the length of a board side')
     board_size = get_input.to_i
   end
 
   def select_move
-    player_input = gets.chomp.to_i
+    get_input.to_i
   end
 end

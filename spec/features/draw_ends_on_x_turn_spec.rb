@@ -15,7 +15,7 @@ describe Game do
     @player_o = Human_player.new('Player 2', 'O', @in_out)
     @board = Board.new(validate)
     game = Game.new(@in_out, @player_x, @player_o, @board)
-    allow(game.in_out).to receive(:gets).and_return('1', '2', '3', '4', '6', '5', '7', '9', '8')
+    allow(game.in_out.input).to receive(:gets).and_return('1', '2', '3', '4', '6', '5', '7', '9', '8')
     game.go
     expect(game.winner).to eq false
     expect(game.current_player.mark).to eq 'O'
