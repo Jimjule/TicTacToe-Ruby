@@ -5,7 +5,12 @@ class Computer_player
     @mark = 'O'
   end
 
-  def make_move(max_turns)
-    rand(max_turns) - 1
+  def make_move(board)
+    valid_move = false
+    until (valid_move)
+      computer_move = rand(board.max_turns) - 1
+      valid_move = board.is_square_free?(computer_move)
+    end
+    computer_move
   end
 end

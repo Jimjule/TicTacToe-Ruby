@@ -15,7 +15,8 @@ describe Human_player do
   end
 
   it 'Can make a move' do
+    board = Board.new(Validate.new)
     allow(input).to receive(:gets).and_return('3')
-    expect(player.make_move(9)).to eq(2)
+    expect(player.make_move(board)).to eq(2)
   end
 end

@@ -15,11 +15,11 @@ describe Computer_player do
 
   it 'Can return a number from 0' do
     allow(@computer_player).to receive(:rand).and_return(1)
-    expect(@computer_player.make_move(9)).to eq(0)
+    expect(@computer_player.make_move(Board.new(Validate.new))).to eq(0)
   end
 
   it 'Can return a number up to 8' do
     allow(@computer_player).to receive(:rand).and_return(3)
-    expect(@computer_player.make_move(9)).to eq(2)
+    expect(@computer_player.make_move(Board.new(Validate.new))).to eq(2)
   end
 end
