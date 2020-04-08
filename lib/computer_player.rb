@@ -6,11 +6,18 @@ class Computer_player
   end
 
   def make_move(board)
-    valid_move = false
-    until (valid_move)
-      computer_move = rand(board.max_turns) - 1
-      valid_move = board.is_square_free?(computer_move)
+      computer_move = select_free_square(board) - 1
+  end
+
+  def select_free_square(board)
+    get_free_squares(board).sample
+  end
+
+  def get_free_squares(board)
+    free_squares = []
+    for square in board.squares do
+      free_squares << square.id if square.is_square_free?
     end
-    computer_move
+    free_squares
   end
 end
