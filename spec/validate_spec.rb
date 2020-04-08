@@ -1,7 +1,7 @@
 require 'validate'
 
 describe Validate do
-  let(:validate) {Validate.new}
+  let(:validate) { Validate.new }
 
   it 'Validates player name' do
     input = 'Player 1'

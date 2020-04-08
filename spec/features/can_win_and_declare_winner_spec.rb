@@ -3,10 +3,9 @@ require 'board'
 require 'validate'
 
 describe Game do
-
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
-  
+
   before(:each) do
     in_out = Console_in_out.new(input, output)
     validate = Validate.new

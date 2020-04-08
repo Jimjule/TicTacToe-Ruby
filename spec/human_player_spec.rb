@@ -1,7 +1,6 @@
 require 'human_player'
 
 describe Human_player do
-
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
   let(:in_out) { Console_in_out.new(input, output) }

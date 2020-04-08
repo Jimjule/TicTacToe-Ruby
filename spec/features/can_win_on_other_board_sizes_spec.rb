@@ -1,7 +1,6 @@
 require 'game'
 
 describe Game do
-
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
 
