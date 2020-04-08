@@ -1,11 +1,10 @@
 require 'human_player'
-require 'console_in_out'
 
 describe Human_player do
 
+  let(:input) { StringIO.new }
   let(:output) { StringIO.new }
-  let(:player_move) { '3' }
-  let(:in_out) { ConsoleMock.new(player_move, output) }
+  let(:in_out) { Console_in_out.new(input, output) }
   let(:player) { Human_player.new('Player 1', 'X', in_out) }
 
   it 'Knows player name' do
@@ -17,6 +16,7 @@ describe Human_player do
   end
 
   it 'Can make a move' do
+    allow(input).to receive(:gets).and_return('3')
     expect(player.make_move(9)).to eq(2)
   end
 end

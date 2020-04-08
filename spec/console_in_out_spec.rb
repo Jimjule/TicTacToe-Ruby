@@ -1,5 +1,4 @@
 require 'console_in_out'
-require './spec/mocks/console_mock.rb'
 
 describe Console_in_out do
 
