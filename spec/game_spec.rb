@@ -3,21 +3,27 @@ require 'game'
 describe Game do
 
   before(:each) do
-    @input = Input.new
-    @player_x = Player.new('Player 1', 'X')
-    @player_o = Player.new('Player 2', 'O')
+    @inOut = ConsoleInOut.new('', '')
+    @player_x = HumanPlayer.new('Player 1', 'X', @inOut)
+    @player_o = HumanPlayer.new('Player 2', 'O', @inOut)
+  end
+
+  it 'Returns current player X' do
+    board = Board.new(@inOut, 3)
+    game = Game.new(@inOut, @player_x, @player_o, board)
+    expect(game.current_player).to eq(@player_x)
   end
 
   it 'Displays a board' do
-    allow_any_instance_of(Input).to receive(:gets).and_return('3')
-    board = Board.new(@input.set_board_size, true)
-    expect { Game.new(true, @input, @player_x, @player_o, board) }.to output("Welcome to TicTacToe\n").to_stdout
+    board = Board.new(@inOut, 3)
+    game = Game.new(@inOut, @player_x, @player_o, board)
+    expect(@inOut.output.join).to include("-----|123||456||789|-----")
   end
 
   it 'Asks for board size input' do
-    allow_any_instance_of(Input).to receive(:gets).and_return('4')
-    board = Board.new(@input.set_board_size, true)
-    game = Game.new(true, @input, @player_x, @player_o, board)
+    validate = Validate.new
+    board = Board.new(@inOut, validate, 4)
+    game = Game.new(@inOut, @player_x, @player_o, board)
     expect(game.board.board_size).to eq 4
   end
 end
