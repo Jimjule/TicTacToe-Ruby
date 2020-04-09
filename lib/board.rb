@@ -2,9 +2,6 @@ require_relative 'square'
 
 class Board
   attr_reader :current_player, :board_middle, :turn_count, :max_turns, :board_size, :squares
-  ITERATE_RISING = -1
-  ITERATE_FALLING = 1
-  ITERATE_FROM_START = 0
 
   def initialize(validate, board_size = 3)
     @validate = validate
@@ -42,9 +39,12 @@ class Board
   end
 
   def check_for_winner(current_player)
+    @iterate_rising = -1
+    @iterate_falling = 1
+    @iterate_from_start = 0
     check_row || check_column(current_player) ||
-      check_diagonal(current_player, ITERATE_FROM_START, ITERATE_FALLING) ||
-      check_diagonal(current_player, @board_size - 1, ITERATE_RISING)
+      check_diagonal(current_player, @iterate_from_start, @iterate_falling) ||
+      check_diagonal(current_player, @board_size - 1, @iterate_rising)
   end
 
   private
@@ -75,8 +75,8 @@ class Board
   end
 
   def check_column(current_player)
-    @column_iterator = ITERATE_FROM_START
-    @line_size = ITERATE_FROM_START
+    @column_iterator = @iterate_from_start
+    @line_size = @iterate_from_start
     check_column_loop(current_player) until board_checked(@column_iterator)
     @line_size >= @board_size - 1
   end
@@ -96,7 +96,7 @@ class Board
   end
 
   def new_line
-    @line_size = ITERATE_FROM_START
+    @line_size = @iterate_from_start
     @column_iterator += 1
   end
 
@@ -112,7 +112,7 @@ class Board
   end
 
   def check_diagonal(current_player, diagonal_iterator, iterate_step)
-    @line_size = ITERATE_FROM_START
+    @line_size = @iterate_from_start
     @diagonal_iterator = diagonal_iterator
     diagonal_check_loop(current_player, iterate_step)
     @line_size >= @board_size
