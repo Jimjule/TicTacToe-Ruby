@@ -1,5 +1,7 @@
+require_relative 'square'
+
 class Board
-  attr_reader(:current_player, :board_middle, :turn_count, :max_turns, :board_size, :inOut)
+  attr_reader :current_player, :board_middle, :turn_count, :max_turns, :board_size, :inOut, :squares
   BOARD_ROW = '-'
   BOARD_COLUMM = '|'
   BEGINNING_AND_END_LENGTH = 2
@@ -7,22 +9,28 @@ class Board
   ITERATE_FALLING = 1
   ITERATE_FROM_START = 0
 
-  def initialize(inOut, board_size = 3, command_line_application = true)
+  def initialize(inOut, validate, board_size = 3)
     @inOut = inOut
+    @validate = validate
     @board = []
+    @squares = []
     @board_middle = []
     @board_size = board_size
     @max_turns = board_size * board_size
-    set_board(command_line_application)
+    set_squares
+    set_board
   end
 
-  def set_board(command_line_application)
+  def set_board
     set_middle_sections
-    view_board if command_line_application
+    view_board
   end
 
   def set_middle_sections
-    middle = * (1..@max_turns)
+    middle = []
+    for square in @squares do
+      middle.push(square.value)
+    end
     middle = middle.map(&:to_s)
     @board_middle = middle.each_slice(@board_size).to_a
   end
@@ -30,16 +38,21 @@ class Board
   def view_board
     system('clear')
     reset_board
+    set_middle_sections
     assemble_board
-    @inOut.write(@board)
+    @inOut.print(@board)
+  end
+  
+  def is_square_free?(square_number)
+    if @validate.is_valid_player_input?(square_number, @max_turns)
+      @squares[square_number].is_square_free?
+    else
+      false
+    end
   end
 
-  def check_square_is_free(row, column)
-    @board_middle[row][column] != 'X' && @board_middle[row][column] != 'O'
-  end
-
-  def make_move(current_player, row, column)
-    @board_middle[row][column] = current_player if check_square_is_free(row, column)
+  def make_move(current_player, square)
+    @squares[square].mark(current_player)
   end
 
   def check_for_winner(current_player)
@@ -49,6 +62,14 @@ class Board
   end
 
   private
+
+  def set_squares
+    i = 1
+    until i > @max_turns
+      @squares.push(Square.new(i))
+      i += 1
+    end
+  end
 
   def board_top_and_bottom
     board_top_and_bottom = []

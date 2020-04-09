@@ -1,11 +1,14 @@
 require 'game'
+require 'board'
+require 'validate'
 
 describe Game do
   before(:each) do
     inOut = ConsoleInOut.new('', '')
-    player_x = Player.new('Player 1', 'X')
-    player_o = Player.new('Player 2', 'O')
-    board = Board.new(inOut, 3, true)
+    validate = Validate.new
+    player_x = HumanPlayer.new('Player 1', 'X', inOut)
+    player_o = HumanPlayer.new('Player 2', 'O', inOut)
+    board = Board.new(inOut, validate)
     @game = Game.new(inOut, player_x, player_o, board)
   end
 
@@ -23,8 +26,6 @@ describe Game do
 
   it 'Can win a row' do
     allow(@game.inOut).to receive(:gets).and_return('9', '1', '7', '2', '6', '3', '4', '5', '8')
-    @game.go
-    expect(@game.winner).to be true
     @game.go
     expect(@game.inOut.output.last).to eq("Player 2 is the winner!")
   end
