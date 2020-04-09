@@ -1,7 +1,7 @@
 require_relative 'square'
 
 class Board
-  attr_reader :current_player, :board_middle, :turn_count, :max_turns, :board_size, :squares
+  attr_reader :current_player, :turn_count, :max_turns, :board_size, :squares
 
   def initialize(validate, board_size = 3)
     @validate = validate
@@ -15,13 +15,13 @@ class Board
   def view_board
     board = []
     board << board_top_and_bottom
-    board_middle = get_middle_sections
+    board_middle = get_board_values
     assemble_board_middle(board, board_middle)
     board << board[0]
     board
   end
 
-  def get_middle_sections
+  def get_board_values
     middle = []
     for square in @squares do
       middle.push(square.value)
@@ -82,7 +82,7 @@ class Board
   end
 
   def check_column_loop(current_player)
-    for row in get_middle_sections do
+    for row in get_board_values do
       next_column(row, current_player)
     end
   end
@@ -105,7 +105,7 @@ class Board
   end
 
   def check_row
-    for row in get_middle_sections do
+    for row in get_board_values do
       row_win = true if row.uniq.length == 1
     end
     row_win
@@ -119,7 +119,7 @@ class Board
   end
 
   def diagonal_check_loop(current_player, iterate_step)
-    for row in get_middle_sections do
+    for row in get_board_values do
       next_diagonal(iterate_step) if row[@diagonal_iterator] == current_player
     end
   end
