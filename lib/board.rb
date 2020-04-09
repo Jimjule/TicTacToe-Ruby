@@ -12,7 +12,6 @@ class Board
   def initialize(validate, board_size = 3)
     @validate = validate
     @squares = []
-    @board_middle = []
     @board_size = board_size
     @max_turns = board_size * board_size
     set_squares
@@ -20,17 +19,21 @@ class Board
   end
 
   def view_board
-    set_middle_sections
-    assemble_board
+    board = []
+    board << board_top_and_bottom
+    board_middle = get_middle_sections
+    assemble_board_middle(board, board_middle)
+    board << board[0]
+    board
   end
 
-  def set_middle_sections
+  def get_middle_sections
     middle = []
     for square in @squares do
       middle.push(square.value)
     end
     middle = middle.map(&:to_s)
-    @board_middle = middle.each_slice(@board_size).to_a
+    board_middle = middle.each_slice(@board_size).to_a
   end
 
   def is_square_free?(square_number)
@@ -65,16 +68,8 @@ class Board
     board_top_and_bottom = [board_top_and_bottom.join]
   end
 
-  def assemble_board
-    board = []
-    board << board_top_and_bottom
-    assemble_board_middle(board)
-    board << board[0]
-    board
-  end
-
-  def assemble_board_middle(board)
-    @board_middle.each do |section|
+  def assemble_board_middle(board, board_middle)
+    board_middle.each do |section|
       board << BOARD_COLUMM + section.join + BOARD_COLUMM
     end
   end
@@ -87,7 +82,7 @@ class Board
   end
 
   def check_column_loop(current_player)
-    for row in @board_middle do
+    for row in get_middle_sections do
       next_column(row, current_player)
     end
   end
@@ -110,7 +105,7 @@ class Board
   end
 
   def check_row
-    for row in @board_middle do
+    for row in get_middle_sections do
       row_win = true if row.uniq.length == 1
     end
     row_win
@@ -124,7 +119,7 @@ class Board
   end
 
   def diagonal_check_loop(current_player, iterate_step)
-    for row in @board_middle do
+    for row in get_middle_sections do
       next_diagonal(iterate_step) if row[@diagonal_iterator] == current_player
     end
   end
