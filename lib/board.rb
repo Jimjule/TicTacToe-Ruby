@@ -17,11 +17,6 @@ class Board
     @board_size = board_size
     @max_turns = board_size * board_size
     set_squares
-    set_board
-  end
-
-  def set_board
-    set_middle_sections
     view_board
   end
 
