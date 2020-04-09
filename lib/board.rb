@@ -11,13 +11,17 @@ class Board
 
   def initialize(validate, board_size = 3)
     @validate = validate
-    @board = []
     @squares = []
     @board_middle = []
     @board_size = board_size
     @max_turns = board_size * board_size
     set_squares
     view_board
+  end
+
+  def view_board
+    set_middle_sections
+    assemble_board
   end
 
   def set_middle_sections
@@ -27,13 +31,6 @@ class Board
     end
     middle = middle.map(&:to_s)
     @board_middle = middle.each_slice(@board_size).to_a
-  end
-
-  def view_board
-    reset_board
-    set_middle_sections
-    assemble_board
-    @board
   end
 
   def is_square_free?(square_number)
@@ -69,19 +66,17 @@ class Board
   end
 
   def assemble_board
-    @board << board_top_and_bottom
-    assemble_board_middle
-    @board << @board[0]
+    board = []
+    board << board_top_and_bottom
+    assemble_board_middle(board)
+    board << board[0]
+    board
   end
 
-  def assemble_board_middle
+  def assemble_board_middle(board)
     @board_middle.each do |section|
-      @board << BOARD_COLUMM + section.join + BOARD_COLUMM
+      board << BOARD_COLUMM + section.join + BOARD_COLUMM
     end
-  end
-
-  def reset_board
-    @board = []
   end
 
   def check_column(current_player)

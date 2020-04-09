@@ -6,7 +6,7 @@ class Computer_player
   end
 
   def make_move(board)
-      computer_move = select_free_square(board) - 1
+    computer_move = select_free_square(board) - 1
   end
 
   def select_free_square(board)
