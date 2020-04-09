@@ -26,6 +26,7 @@ class Game
   private
 
   def welcome
+    @in_out.clear
     @in_out.print('Welcome to TicTacToe')
   end
 
@@ -39,6 +40,7 @@ class Game
   def submit_move
     player_move = current_player.make_move(@board)
     @board.make_move(current_player.mark, player_move)
+    @in_out.clear
     @in_out.print(@board.view_board)
   end
 

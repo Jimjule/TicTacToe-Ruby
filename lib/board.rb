@@ -35,7 +35,6 @@ class Board
   end
 
   def view_board
-    system('clear')
     reset_board
     set_middle_sections
     assemble_board

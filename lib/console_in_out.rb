@@ -32,4 +32,8 @@ class Console_in_out
   def select_move
     get_input.to_i
   end
+
+  def clear
+    system('clear')
+  end
 end
