@@ -2,8 +2,6 @@ require_relative 'square'
 
 class Board
   attr_reader :current_player, :board_middle, :turn_count, :max_turns, :board_size, :squares
-  BOARD_ROW = '-'
-  BOARD_COLUMM = '|'
   BEGINNING_AND_END_LENGTH = 2
   ITERATE_RISING = -1
   ITERATE_FALLING = 1
@@ -62,15 +60,17 @@ class Board
 
   def board_top_and_bottom
     board_top_and_bottom = []
+    board_row = '-'
     (@board_size + BEGINNING_AND_END_LENGTH).times do
-      board_top_and_bottom.push(BOARD_ROW)
+      board_top_and_bottom.push(board_row)
     end
     board_top_and_bottom = [board_top_and_bottom.join]
   end
 
   def assemble_board_middle(board, board_middle)
+    board_column = '|'
     board_middle.each do |section|
-      board << BOARD_COLUMM + section.join + BOARD_COLUMM
+      board << board_column + section.join + board_column
     end
   end
 
