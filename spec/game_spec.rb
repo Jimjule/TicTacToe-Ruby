@@ -4,8 +4,8 @@ describe Game do
 
   before(:each) do
     @inOut = ConsoleInOut.new('', '')
-    @player_x = Player.new('Player 1', 'X')
-    @player_o = Player.new('Player 2', 'O')
+    @player_x = HumanPlayer.new('Player 1', 'X', @inOut)
+    @player_o = HumanPlayer.new('Player 2', 'O', @inOut)
   end
 
   it 'Returns current player X' do
@@ -21,7 +21,8 @@ describe Game do
   end
 
   it 'Asks for board size input' do
-    board = Board.new(@inOut, 4)
+    validate = Validate.new
+    board = Board.new(@inOut, validate, 4)
     game = Game.new(@inOut, @player_x, @player_o, board)
     expect(game.board.board_size).to eq 4
   end
