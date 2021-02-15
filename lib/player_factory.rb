@@ -18,9 +18,12 @@ class Player_factory
 
     board = Board.new(@validate, board_size)
 
-    game = Game.new(@in_out, player_x, player_o, board)
-    game.go
-end
+    @game = Game.new(@in_out, player_x, player_o, board)
+  end
+
+  def start_game
+    @game.go
+  end
 
   def get_player_name(which_player)
     player_name = ''
