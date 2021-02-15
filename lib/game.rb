@@ -1,13 +1,9 @@
-require_relative 'human_player'
-require_relative 'board'
-require_relative 'console_in_out'
-
 class Game
-  attr_reader :player_x, :player_o, :board, :inOut, :winner
+  attr_reader :player_x, :player_o, :board, :in_out, :winner
 
-  def initialize(inOut, player_x, player_o, board)
+  def initialize(in_out, player_x, player_o, board)
     @turn_count = 0
-    @inOut = inOut
+    @in_out = in_out
     welcome
     @player_x = player_x
     @player_o = player_o
@@ -16,6 +12,7 @@ class Game
   end
 
   def go
+    @in_out.print(@board.view_board)
     until game_is_over
       turn_loop
     end
@@ -29,25 +26,22 @@ class Game
   private
 
   def welcome
-    @inOut.print('Welcome to TicTacToe')
+    @in_out.clear
+    @in_out.print('Welcome to TicTacToe')
   end
 
   def turn_loop
-    @inOut.print("#{current_player.id}'s move")
+    @in_out.print("#{current_player.id}'s move")
     submit_move
     @winner = @board.check_for_winner(current_player.mark)
     @turn_count += 1 unless @winner
   end
 
   def submit_move
-    valid_move = false
-    until(valid_move)
-      print("Please enter a free number from 1-#{@board.max_turns}\n")
-      player_input = current_player.make_move(@board.max_turns)
-      valid_move = @board.is_square_free?(player_input - 1)
-    end
-    @board.make_move(current_player.mark, player_input - 1)
-    @board.view_board
+    player_move = current_player.make_move(@board)
+    @board.make_move(current_player.mark, player_move)
+    @in_out.clear
+    @in_out.print(@board.view_board)
   end
 
   def game_is_over
@@ -55,7 +49,7 @@ class Game
   end
 
   def announce_winner
-    @inOut.print("#{current_player.id} is the winner!") if @winner
-    @inOut.print('Draw!') unless @winner
+    @in_out.print("#{current_player.id} is the winner!") if @winner
+    @in_out.print('Draw!') unless @winner
   end
 end

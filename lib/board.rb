@@ -1,54 +1,37 @@
 require_relative 'square'
 
 class Board
-  attr_reader :current_player, :board_middle, :turn_count, :max_turns, :board_size, :inOut, :squares
-  BOARD_ROW = '-'
-  BOARD_COLUMM = '|'
-  BEGINNING_AND_END_LENGTH = 2
-  ITERATE_RISING = -1
-  ITERATE_FALLING = 1
-  ITERATE_FROM_START = 0
+  attr_reader :current_player, :turn_count, :max_turns, :board_size, :squares
 
-  def initialize(inOut, validate, board_size = 3)
-    @inOut = inOut
+  def initialize(validate, board_size = 3)
     @validate = validate
-    @board = []
     @squares = []
-    @board_middle = []
     @board_size = board_size
     @max_turns = board_size * board_size
     set_squares
-    set_board
-  end
-
-  def set_board
-    set_middle_sections
     view_board
   end
 
-  def set_middle_sections
+  def view_board
+    board = []
+    board << board_top_and_bottom
+    board_middle = get_board_values
+    assemble_board_middle(board, board_middle)
+    board << board[0]
+    board
+  end
+
+  def get_board_values
     middle = []
     for square in @squares do
       middle.push(square.value)
     end
     middle = middle.map(&:to_s)
-    @board_middle = middle.each_slice(@board_size).to_a
+    board_middle = middle.each_slice(@board_size).to_a
   end
 
-  def view_board
-    system('clear')
-    reset_board
-    set_middle_sections
-    assemble_board
-    @inOut.print(@board)
-  end
-  
   def is_square_free?(square_number)
-    if @validate.is_valid_player_input?(square_number, @max_turns)
-      @squares[square_number].is_square_free?
-    else
-      false
-    end
+    @squares[square_number].is_square_free?
   end
 
   def make_move(current_player, square)
@@ -56,9 +39,12 @@ class Board
   end
 
   def check_for_winner(current_player)
+    @iterate_rising = -1
+    @iterate_falling = 1
+    @iterate_from_start = 0
     check_row || check_column(current_player) ||
-      check_diagonal(current_player, ITERATE_FROM_START, ITERATE_FALLING) ||
-      check_diagonal(current_player, @board_size - 1, ITERATE_RISING)
+      check_diagonal(current_player, @iterate_from_start, @iterate_falling) ||
+      check_diagonal(current_player, @board_size - 1, @iterate_rising)
   end
 
   private
@@ -73,37 +59,30 @@ class Board
 
   def board_top_and_bottom
     board_top_and_bottom = []
-    (@board_size + BEGINNING_AND_END_LENGTH).times do
-      board_top_and_bottom.push(BOARD_ROW)
+    board_row = '-'
+    beginning_and_end_length = 2
+    (@board_size + beginning_and_end_length).times do
+      board_top_and_bottom.push(board_row)
     end
     board_top_and_bottom = [board_top_and_bottom.join]
   end
 
-  def assemble_board
-    @board << board_top_and_bottom
-    assemble_board_middle
-    @board << @board[0]
-  end
-
-  def assemble_board_middle
-    @board_middle.each do |section|
-      @board << BOARD_COLUMM + section.join + BOARD_COLUMM
+  def assemble_board_middle(board, board_middle)
+    board_column = '|'
+    board_middle.each do |section|
+      board << board_column + section.join + board_column
     end
   end
 
-  def reset_board
-    @board = []
-  end
-
   def check_column(current_player)
-    @column_iterator = ITERATE_FROM_START
-    @line_size = ITERATE_FROM_START
+    @column_iterator = @iterate_from_start
+    @line_size = @iterate_from_start
     check_column_loop(current_player) until board_checked(@column_iterator)
     @line_size >= @board_size - 1
   end
 
   def check_column_loop(current_player)
-    for row in @board_middle do
+    for row in get_board_values do
       next_column(row, current_player)
     end
   end
@@ -117,7 +96,7 @@ class Board
   end
 
   def new_line
-    @line_size = ITERATE_FROM_START
+    @line_size = @iterate_from_start
     @column_iterator += 1
   end
 
@@ -126,21 +105,21 @@ class Board
   end
 
   def check_row
-    for row in @board_middle do
+    for row in get_board_values do
       row_win = true if row.uniq.length == 1
     end
     row_win
   end
 
   def check_diagonal(current_player, diagonal_iterator, iterate_step)
-    @line_size = ITERATE_FROM_START
+    @line_size = @iterate_from_start
     @diagonal_iterator = diagonal_iterator
     diagonal_check_loop(current_player, iterate_step)
     @line_size >= @board_size
   end
 
   def diagonal_check_loop(current_player, iterate_step)
-    for row in @board_middle do
+    for row in get_board_values do
       next_diagonal(iterate_step) if row[@diagonal_iterator] == current_player
     end
   end

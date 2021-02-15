@@ -26,7 +26,7 @@ describe Square do
     square.mark('X')
     expect(square.value).to eq('X')
   end
-  
+
   it 'Checks square is occupied' do
     square = Square.new(1)
     square.mark('X')

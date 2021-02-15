@@ -1,54 +1,39 @@
 require 'console_in_out'
-require './spec/mocks/console_mock.rb'
 
-describe ConsoleInOut do
-  it 'Gets input' do
-    input = "It's a string!"
-    output = []
-    console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.get_input).to eq("It's a string!")
-  end
+describe Console_in_out do
+  let(:input) { StringIO.new }
+  let(:output) { StringIO.new }
+  let(:console_in_out) { Console_in_out.new(input, output) }
 
   it 'Writes to output' do
     input = "It's a string!"
-    output = []
-    console_in_out = ConsoleMock.new(input, output)
     console_in_out.print(input)
-    expect(console_in_out.output[0]).to eq("It's a string!")
+    expect(console_in_out.output.string).to eq("It's a string!\n")
   end
 
   it 'Gets player name' do
-    input = 'A name'
-    output = []
-    console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.get_string(HumanPlayer.new('1', 'X', console_in_out))).to eq("A name")
+    allow(input).to receive(:gets).and_return('A name')
+    console_in_out = Console_in_out.new(input, output)
+    expect(console_in_out.get_input).to eq('A name')
   end
 
   it 'Sets board size' do
-    input = '6'
-    output = []
-    console_in_out = ConsoleMock.new(input, output)
+    allow(input).to receive(:gets).and_return('6')
+    console_in_out = Console_in_out.new(input, output)
     expect(console_in_out.set_board_size).to eq(6)
   end
 
   it 'Gets a move' do
-    input = '8'
-    output = []
-    console_in_out = ConsoleMock.new(input, output)
+    allow(input).to receive(:gets).and_return('8')
+    console_in_out = Console_in_out.new(input, output)
     expect(console_in_out.select_move).to eq 8
   end
 
-  it 'Get boolean, y returns true' do
-    input = 'y'
-    output = []
-    console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.play_against_computer?(input)).to eq true
+  it 'Entering y returns true' do
+    expect(console_in_out.play_against_computer?('y')).to eq true
   end
 
-  it 'Get boolean, anything else returns false' do
-    input = 'nope'
-    output = []
-    console_in_out = ConsoleMock.new(input, output)
-    expect(console_in_out.play_against_computer?(input)).to eq false
+  it 'Not entering y returns false' do
+    expect(console_in_out.play_against_computer?('nope')).to eq false
   end
 end

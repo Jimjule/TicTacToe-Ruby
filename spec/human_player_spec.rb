@@ -1,22 +1,28 @@
 require 'human_player'
-require 'console_in_out'
 
-describe HumanPlayer do
+describe Human_player do
+  let(:input) { StringIO.new }
+  let(:output) { StringIO.new }
+  let(:in_out) { Console_in_out.new(input, output) }
+  let(:player) { Human_player.new('Player 1', 'X', in_out) }
 
-  before(:each) do
-    inOut = ConsoleMock.new('3', '')
-    @player = HumanPlayer.new('Player 1', 'X', inOut)
+  it 'Knows player name' do
+    expect(player.id).to eq('Player 1')
   end
 
-  it 'Stores player name' do
-    expect(@player.id).to eq('Player 1')
-  end
-
-  it 'Stores player name' do
-    expect(@player.mark).to eq('X')
+  it 'Knows their mark' do
+    expect(player.mark).to eq('X')
   end
 
   it 'Can make a move' do
-    expect(@player.make_move(9)).to eq(3)
+    board = Board.new(Validate.new)
+    allow(input).to receive(:gets).and_return('3')
+    expect(player.make_move(board)).to eq(2)
+  end
+
+  it 'Does not submit squares that do no exist' do
+    board = Board.new(Validate.new)
+    allow(input).to receive(:gets).and_return('-30', '12', '3')
+    expect(player.make_move(board)).to eq(2)
   end
 end
