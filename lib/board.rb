@@ -78,7 +78,7 @@ class Board
     @column_iterator = @iterate_from_start
     @line_size = @iterate_from_start
     check_column_loop(current_player) until board_checked(@column_iterator)
-    @line_size >= @board_size - 1
+    @line_size >= @board_size
   end
 
   def check_column_loop(current_player)

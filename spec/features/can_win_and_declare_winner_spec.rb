@@ -18,6 +18,7 @@ describe Game do
   it 'Can win diagonally falling' do
     allow(@game.in_out.input).to receive(:gets).and_return('9', '2', '5', '3', '1', '4', '6', '7', '8')
     @game.go
+    expect(@game.turn_count).to eq 5
     expect(@game.winner).to be true
   end
 
