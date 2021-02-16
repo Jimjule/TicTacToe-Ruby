@@ -3,8 +3,7 @@ require_relative 'square'
 class Board
   attr_reader :current_player, :turn_count, :max_turns, :board_size, :squares
 
-  def initialize(validate, board_size = 3)
-    @validate = validate
+  def initialize(board_size = 3)
     @squares = []
     @board_size = board_size
     @max_turns = board_size * board_size

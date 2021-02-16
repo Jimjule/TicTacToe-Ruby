@@ -6,7 +6,7 @@ class Human_player
     @mark = mark
   end
 
-  def make_move(board)
+  def select_move(board)
     valid_move = false
     until (valid_move)
       print("Please enter a free number from 1-#{board.max_turns}\n")

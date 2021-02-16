@@ -3,9 +3,10 @@ require 'game'
 describe Game do
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
+  let(:validate) { Validate.new }
 
   before(:each) do
-    @in_out = Console_in_out.new(input, output)
+    @in_out = Console_in_out.new(input, output, validate)
   end
 
   it "Can call X 'Player 1'" do

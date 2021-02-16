@@ -8,11 +8,11 @@ describe Game do
   let(:output) { StringIO.new }
 
   it 'Ends with player X' do
-    @in_out = Console_in_out.new(input, output)
     validate = Validate.new
+    @in_out = Console_in_out.new(input, output, validate)
     @player_x = Human_player.new('Player 1', 'X', @in_out)
     @player_o = Human_player.new('Player 2', 'O', @in_out)
-    @board = Board.new(validate)
+    @board = Board.new
     game = Game.new(@in_out, @player_x, @player_o, @board)
     allow(game.in_out.input).to receive(:gets).and_return('1', '2', '3', '4', '6', '5', '7', '9', '8')
     game.go

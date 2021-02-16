@@ -5,7 +5,7 @@ class Computer_player
     @mark = 'O'
   end
 
-  def make_move(board)
+  def select_move(board)
     computer_move = select_free_square(board) - 1
   end
 

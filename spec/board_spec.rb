@@ -3,7 +3,7 @@ require 'validate'
 
 describe Board do
   let(:validate) { Validate.new }
-  let(:board) { Board.new(validate) }
+  let(:board) { Board.new }
 
   it 'Makes a board' do
     expect(board.view_board).to eq([["-----"], "|123|", "|456|", "|789|", ["-----"]])

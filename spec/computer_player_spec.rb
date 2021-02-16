@@ -1,8 +1,8 @@
 require 'computer_player'
 
 describe Computer_player do
-  let(:in_out) { Console_in_out.new(StringIO.new, StringIO.new) }
-  let(:board) { Board.new(Validate.new) }
+  let(:in_out) { Console_in_out.new(StringIO.new, StringIO.new, Validate.new) }
+  let(:board) { Board.new }
   let(:computer_player) { Computer_player.new(in_out) }
 
   it 'Has a default name' do
@@ -19,11 +19,11 @@ describe Computer_player do
 
   it 'Can return a number from 0' do
     allow(computer_player).to receive(:select_free_square).and_return(1)
-    expect(computer_player.make_move(board)).to eq(0)
+    expect(computer_player.select_move(board)).to eq(0)
   end
 
   it 'Can return a number up to 8' do
     allow(computer_player).to receive(:select_free_square).and_return(3)
-    expect(computer_player.make_move(board)).to eq(2)
+    expect(computer_player.select_move(board)).to eq(2)
   end
 end

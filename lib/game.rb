@@ -38,7 +38,7 @@ class Game
   end
 
   def submit_move
-    player_move = current_player.make_move(@board)
+    player_move = current_player.select_move(@board)
     @board.make_move(current_player.mark, player_move)
     @in_out.clear
     @in_out.print(@board.view_board)
