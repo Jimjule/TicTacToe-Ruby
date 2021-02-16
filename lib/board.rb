@@ -8,6 +8,7 @@ class Board
     @squares = []
     @board_size = board_size
     @max_turns = board_size * board_size
+    @last_move = 0
     set_squares
     view_board
   end
@@ -36,6 +37,7 @@ class Board
 
   def make_move(current_player, square)
     @squares[square].mark(current_player)
+    @last_move = square
   end
 
   def check_for_winner(current_player)
@@ -77,22 +79,14 @@ class Board
   def check_column(current_player)
     @column_iterator = @iterate_from_start
     @line_size = @iterate_from_start
-    check_column_loop(current_player) until board_checked(@column_iterator)
-    @line_size >= @board_size
+    check_column_loop(current_player)
   end
 
   def check_column_loop(current_player)
     for row in get_board_values do
-      next_column(row, current_player)
+      return false if row[@last_move % @board_size] != current_player
     end
-  end
-
-  def next_column(row, current_player)
-    row[@column_iterator] == current_player ? line_is_unbroken : new_line
-  end
-
-  def line_is_unbroken
-    @line_size += 1
+    true
   end
 
   def new_line
@@ -126,6 +120,6 @@ class Board
 
   def next_diagonal(iterate_step)
     @diagonal_iterator += iterate_step
-    line_is_unbroken
+    @line_size += 1
   end
 end

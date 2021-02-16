@@ -25,18 +25,28 @@ describe Game do
   it 'Can win diagonally rising' do
     allow(@game.in_out.input).to receive(:gets).and_return('9', '5', '2', '7', '1', '4', '6', '3', '8')
     @game.go
+    expect(@game.turn_count).to eq 8
     expect(@game.winner).to be true
   end
 
   it 'Can win a row' do
     allow(@game.in_out.input).to receive(:gets).and_return('9', '1', '7', '2', '6', '3', '4', '5', '8')
     @game.go
+    expect(@game.turn_count).to eq 6
     expect(@game.winner).to eq true
   end
 
   it 'Can win a column' do
     allow(@game.in_out.input).to receive(:gets).and_return('1', '2', '4', '5', '7', '8', '3', '6', '9')
     @game.go
+    expect(@game.turn_count).to eq 5
+    expect(@game.winner).to be true
+  end
+
+  it 'Can win with the second column' do
+    allow(@game.in_out.input).to receive(:gets).and_return('8', '1', '5', '4', '2', '6', '7', '3', '9')
+    @game.go
+    expect(@game.turn_count).to eq 5
     expect(@game.winner).to be true
   end
 end
