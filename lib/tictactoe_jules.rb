@@ -1,4 +1,4 @@
-class Game
+class Tictactoe_jules
   attr_reader :player_x, :player_o, :board, :in_out, :winner, :turn_count
 
   def initialize(in_out, player_x, player_o, board)
