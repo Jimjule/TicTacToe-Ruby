@@ -1,6 +1,6 @@
-require 'tictactoe_jules'
+require 'game'
 
-describe Tictactoe_jules do
+describe Game do
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
   let(:validate) { Validate.new }

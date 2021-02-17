@@ -1,8 +1,8 @@
-require 'tictactoe_jules'
+require 'game'
 require 'board'
 require 'validate'
 
-describe Tictactoe_jules do
+describe Game do
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
   let(:validate) { Validate.new }
@@ -12,7 +12,7 @@ describe Tictactoe_jules do
     player_x = Human_player.new('Player 1', 'X', in_out)
     player_o = Human_player.new('Player 2', 'O', in_out)
     board = Board.new
-    @game = Tictactoe_jules.new(in_out, player_x, player_o, board)
+    @game = Game.new(in_out, player_x, player_o, board)
   end
 
   it 'Can win diagonally falling' do

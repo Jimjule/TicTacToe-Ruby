@@ -1,5 +1,5 @@
 require './lib/player_factory'
-require './lib/tictactoe_jules'
+require './lib/game'
 require './lib/validate'
 require './lib/board'
 
@@ -16,5 +16,5 @@ player_o = Player_factory.generate('O', computer_player, in_out, player_o_name)
 board_size = in_out.get_board_size
 board = Board.new(board_size)
 
-game = Tictactoe_jules.new(in_out, player_x, player_o, board)
+game = Game.new(in_out, player_x, player_o, board)
 game.go
