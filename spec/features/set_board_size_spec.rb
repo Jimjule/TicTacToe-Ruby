@@ -6,8 +6,7 @@ describe Board do
   let(:output) { StringIO.new }
 
   before(:each) do
-    @validate = Validate.new
-    @in_out = Console_in_out.new(input, output, @validate)
+    @in_out = Console_in_out.new(input, output)
   end
 
   it 'Can make a 4x4 board' do

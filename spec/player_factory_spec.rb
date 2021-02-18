@@ -3,10 +3,9 @@ require 'player_factory'
 describe Player_factory do
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
-  let(:validate) { Validate.new }
 
   before(:each) do
-    @in_out = Console_in_out.new(input, output, validate)
+    @in_out = Console_in_out.new(input, output)
   end
 
   it 'Returns a Human Player' do

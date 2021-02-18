@@ -1,7 +1,7 @@
 require 'computer_player'
 
 describe Computer_player do
-  let(:in_out) { Console_in_out.new(StringIO.new, StringIO.new, Validate.new) }
+  let(:in_out) { Console_in_out.new(StringIO.new, StringIO.new) }
   let(:board) { Board.new }
   let(:computer_player) { Computer_player.new(in_out) }
 

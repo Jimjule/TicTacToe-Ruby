@@ -3,8 +3,7 @@ require 'console_in_out'
 describe Console_in_out do
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
-  let(:validate) { Validate.new }
-  let(:console_in_out) { Console_in_out.new(input, output, validate) }
+  let(:console_in_out) { Console_in_out.new(input, output) }
 
   it 'Writes to output' do
     input = "It's a string!"

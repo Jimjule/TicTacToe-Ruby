@@ -5,8 +5,7 @@ describe Game do
   let(:output) { StringIO.new }
 
   before(:each) do
-    @validate = Validate.new
-    @in_out = Console_in_out.new(input, output, @validate)
+    @in_out = Console_in_out.new(input, output)
     @player_x = Human_player.new('Player 1', 'X', @in_out)
     @player_o = Human_player.new('Player 2', 'O', @in_out)
   end

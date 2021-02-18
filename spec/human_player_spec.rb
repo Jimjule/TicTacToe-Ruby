@@ -3,8 +3,7 @@ require 'human_player'
 describe Human_player do
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
-  let(:validate) { Validate.new }
-  let(:in_out) { Console_in_out.new(input, output, validate) }
+  let(:in_out) { Console_in_out.new(input, output) }
   let(:player) { Human_player.new('Player 1', 'X', in_out) }
 
   it 'Knows player name' do
