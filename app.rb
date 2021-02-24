@@ -1,4 +1,4 @@
-require './lib/tictactoe_jules'
+require './lib/tictactoe_console_setup'
 
-tictactoe_jules = Tictactoe_jules.new
-tictactoe_jules.game_controller.go
+tictactoe_console_setup = Tictactoe_console_setup.new
+tictactoe_console_setup.game_controller.go

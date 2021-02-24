@@ -1,53 +1,27 @@
-require_relative 'game_controller'
-require_relative 'game'
-require_relative 'player_factory'
-require_relative 'validate'
-require_relative 'board'
-
 class Tictactoe_jules
-  attr_reader :game_controller
-  def initialize(in_out = Console_in_out.new(STDIN, STDOUT))
+  attr_reader :player_x, :player_o, :board, :in_out, :winner, :turn_count
+
+  def initialize(in_out, player_x, player_o, board)
+    @turn_count = 1
     @in_out = in_out
-
-    validate = Validate.new
-    player_x_name = assign_player_name('Player X')
-
-    player_x = Player_factory.generate('X', false, in_out, player_x_name)
-
-    computer_player = in_out.get_play_against_computer
-
-    player_o_name = assign_player_name('Player O') if !computer_player
-    player_o = Player_factory.generate('O', computer_player, in_out, player_o_name)
-
-    board_size = assign_board_size
-    @board = Board.new(board_size)
-
-    game = Game.new(in_out, player_x, player_o, @board)
-
-    welcome
-    
-    @game_controller = Game_controller.new(game)
+    @player_x = player_x
+    @player_o = player_o
+    @board = board
+    @winner = false
   end
 
-  private
-  def assign_player_name(which_player)
-    player_name = ''
-    until Validate.is_valid_player_name?(player_name)
-      player_name = @in_out.get_player_name(which_player)
-    end
-    player_name
+  def current_player
+    @turn_count % 2 == 0 ? @player_o : @player_x
   end
 
-  def assign_board_size
-    board_size = ''
-    until Validate.is_valid_board_size?(board_size)
-      board_size = @in_out.set_board_size
-    end
-    board_size
+  def submit_move
+    player_move = current_player.select_move(@board)
+    @board.make_move(current_player.mark, player_move)
+    @winner = @board.check_for_winner(current_player.mark)
+    @turn_count += 1 unless @winner
   end
 
-  def welcome
-    @in_out.clear
-    @in_out.print('Welcome to TicTacToe')
+  def tictactoe_jules_is_over
+    @turn_count > @board.max_turns || @winner
   end
 end

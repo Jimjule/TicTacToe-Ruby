@@ -1,18 +1,24 @@
 require 'tictactoe_jules'
-require 'console_in_out'
 
 describe Tictactoe_jules do
-  let(:in_out) { Console_in_out.new(StringIO.new, StringIO.new) }
+  let(:input) { StringIO.new }
+  let(:output) { StringIO.new }
 
-  it 'Sets up a game' do
-    allow(in_out.input).to receive(:gets).and_return('X', 'n', 'O','3')
-    tictactoe_jules = Tictactoe_jules.new(in_out)
-    expect(tictactoe_jules.game_controller.game).to be_a_kind_of(Game)
+  before(:each) do
+    @in_out = Console_in_out.new(input, output)
+    @player_x = Human_player.new('Player 1', 'X', @in_out)
+    @player_o = Human_player.new('Player 2', 'O', @in_out)
   end
 
-  it 'Displays the welcome message' do
-    allow(in_out.input).to receive(:gets).and_return('X', 'n', 'O','3')
-    tictactoe_jules = Tictactoe_jules.new(in_out)
-    expect(tictactoe_jules.game_controller.game.in_out.output.string).to include("Welcome to TicTacToe\n")
+  it 'Returns current player X' do
+    board = Board.new
+    tictactoe_jules = Tictactoe_jules.new(@in_out, @player_x, @player_o, board)
+    expect(tictactoe_jules.current_player).to eq(@player_x)
+  end
+
+  it 'Asks for board size input' do
+    board = Board.new(4)
+    tictactoe_jules = Tictactoe_jules.new(@in_out, @player_x, @player_o, board)
+    expect(tictactoe_jules.board.board_size).to eq 4
   end
 end

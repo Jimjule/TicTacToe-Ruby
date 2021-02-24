@@ -1,27 +1,27 @@
 class Game_controller
-  attr_reader :game
+  attr_reader :tictactoe_jules
 
-  def initialize(game)
-    @game = game
+  def initialize(tictactoe_jules)
+    @tictactoe_jules = tictactoe_jules
   end
 
   def go
-    @game.in_out.print(@game.board.view_board)
-    until @game.game_is_over
+    @tictactoe_jules.in_out.print(@tictactoe_jules.board.view_board)
+    until @tictactoe_jules.tictactoe_jules_is_over
       take_turn
     end
     announce_winner
   end
 
   def take_turn
-    @game.in_out.print("#{@game.current_player.id}'s move")
-    @game.submit_move
-    @game.in_out.clear
-    @game.in_out.print(@game.board.view_board)
+    @tictactoe_jules.in_out.print("#{@tictactoe_jules.current_player.id}'s move")
+    @tictactoe_jules.submit_move
+    @tictactoe_jules.in_out.clear
+    @tictactoe_jules.in_out.print(@tictactoe_jules.board.view_board)
   end
 
   def announce_winner
-    @game.in_out.print("#{@game.current_player.id} is the winner!") if @game.winner
-    @game.in_out.print('Draw!') unless @game.winner
+    @tictactoe_jules.in_out.print("#{@tictactoe_jules.current_player.id} is the winner!") if @tictactoe_jules.winner
+    @tictactoe_jules.in_out.print('Draw!') unless @tictactoe_jules.winner
   end
 end
