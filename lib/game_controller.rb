@@ -8,8 +8,20 @@ class Game_controller
   def go
     @game.in_out.print(@game.board.view_board)
     until @game.game_is_over
-      @game.turn_loop
+      take_turn
     end
-    @game.announce_winner
+    announce_winner
+  end
+
+  def take_turn
+    @game.in_out.print("#{@game.current_player.id}'s move")
+    @game.submit_move
+    @game.in_out.clear
+    @game.in_out.print(@game.board.view_board)
+  end
+
+  def announce_winner
+    @game.in_out.print("#{@game.current_player.id} is the winner!") if @game.winner
+    @game.in_out.print('Draw!') unless @game.winner
   end
 end
