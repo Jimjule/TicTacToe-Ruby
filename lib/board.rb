@@ -9,16 +9,6 @@ class Board
     @max_turns = board_size * board_size
     @last_move = 0
     set_squares
-    view_board
-  end
-
-  def view_board
-    board = []
-    board << board_top_and_bottom
-    board_middle = get_board_values
-    assemble_board_middle(board, board_middle)
-    board << board[0]
-    board
   end
 
   def get_board_values
@@ -55,23 +45,6 @@ class Board
     until i > @max_turns
       @squares.push(Square.new(i))
       i += 1
-    end
-  end
-
-  def board_top_and_bottom
-    board_top_and_bottom = []
-    board_row = '-'
-    beginning_and_end_length = 2
-    (@board_size + beginning_and_end_length).times do
-      board_top_and_bottom.push(board_row)
-    end
-    board_top_and_bottom = [board_top_and_bottom.join]
-  end
-
-  def assemble_board_middle(board, board_middle)
-    board_column = '|'
-    board_middle.each do |section|
-      board << board_column + section.join + board_column
     end
   end
 

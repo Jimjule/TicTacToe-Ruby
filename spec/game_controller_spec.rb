@@ -23,7 +23,11 @@ describe Tictactoe_jules do
 
   it 'Displays the welcome message' do
     allow(@in_out.input).to receive(:gets).and_return('X', 'n', 'O','3')
-    tictactoe_console_setup = Tictactoe_console_setup.new(@in_out)
-    expect(tictactoe_console_setup.in_out.output.string).to include("Welcome to TicTacToe\n")
+    expect(@game_controller.in_out.output.string).to include("Welcome to TicTacToe\n")
+  end
+
+  it 'Formats the board' do
+    allow(@in_out.input).to receive(:gets).and_return('X', 'n', 'O','3')
+    expect(@game_controller.in_out.output.string).to include("-----\n|123|\n|456|\n|789|\n-----")
   end
 end

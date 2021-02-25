@@ -22,7 +22,7 @@ class Console_in_out
 
   def get_play_against_computer
     print("Would you like to play against the computer? (y/N)\n")
-    get_input == 'y' ? true : false
+    get_input == 'y'
   end
 
   def set_board_size
@@ -33,7 +33,6 @@ class Console_in_out
   def get_player_name(which_player)
     print("Please enter a name for #{which_player}\n")
     player_name = get_input
-    player_name
   end
 
   def select_move

@@ -6,7 +6,7 @@ describe Board do
   let(:board) { Board.new }
 
   it 'Makes a board' do
-    expect(board.view_board).to eq([["-----"], "|123|", "|456|", "|789|", ["-----"]])
+    expect(board.get_board_values).to eq([["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]])
   end
 
   it 'Contains a number of squares equal to max turns' do
