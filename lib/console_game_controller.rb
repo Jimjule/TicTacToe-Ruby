@@ -1,4 +1,4 @@
-class Game_controller
+class Console_game_controller
   attr_reader :tictactoe_jules, :in_out
 
   def initialize(tictactoe_jules, in_out)

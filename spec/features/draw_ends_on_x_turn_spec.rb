@@ -1,4 +1,4 @@
-require 'game_controller'
+require 'console_game_controller'
 require 'tictactoe_jules'
 require 'human_player'
 require 'board'
@@ -13,10 +13,10 @@ describe Tictactoe_jules do
     player_o = Human_player.new('Player 2', 'O', in_out)
     board = Board.new
     tictactoe_jules = Tictactoe_jules.new(player_x, player_o, board)
-    game_controller = Game_controller.new(tictactoe_jules, in_out)
-    allow(game_controller.in_out.input).to receive(:gets).and_return('1', '2', '3', '4', '6', '5', '7', '9', '8')
-    game_controller.go
-    expect(game_controller.tictactoe_jules.winner).to eq false
-    expect(game_controller.tictactoe_jules.current_player.mark).to eq 'O'
+    console_game_controller = Console_game_controller.new(tictactoe_jules, in_out)
+    allow(console_game_controller.in_out.input).to receive(:gets).and_return('1', '2', '3', '4', '6', '5', '7', '9', '8')
+    console_game_controller.go
+    expect(console_game_controller.tictactoe_jules.winner).to eq false
+    expect(console_game_controller.tictactoe_jules.current_player.mark).to eq 'O'
   end
 end
