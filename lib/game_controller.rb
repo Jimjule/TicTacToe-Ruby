@@ -9,7 +9,7 @@ class Game_controller
   end
 
   def go
-    until @tictactoe_jules.tictactoe_jules_is_over
+    until @tictactoe_jules.game_is_over
       take_turn
     end
     announce_winner

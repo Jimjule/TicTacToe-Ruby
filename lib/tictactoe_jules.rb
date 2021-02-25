@@ -20,7 +20,7 @@ class Tictactoe_jules
     @turn_count += 1 unless @winner
   end
 
-  def tictactoe_jules_is_over
+  def game_is_over
     @turn_count > @board.max_turns || @winner
   end
 end
