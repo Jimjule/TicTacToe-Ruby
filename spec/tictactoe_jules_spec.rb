@@ -12,13 +12,13 @@ describe Tictactoe_jules do
 
   it 'Returns current player X' do
     board = Board.new
-    tictactoe_jules = Tictactoe_jules.new(@in_out, @player_x, @player_o, board)
+    tictactoe_jules = Tictactoe_jules.new(@player_x, @player_o, board)
     expect(tictactoe_jules.current_player).to eq(@player_x)
   end
 
   it 'Asks for board size input' do
     board = Board.new(4)
-    tictactoe_jules = Tictactoe_jules.new(@in_out, @player_x, @player_o, board)
+    tictactoe_jules = Tictactoe_jules.new(@player_x, @player_o, board)
     expect(tictactoe_jules.board.board_size).to eq 4
   end
 end

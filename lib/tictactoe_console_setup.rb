@@ -5,7 +5,7 @@ require_relative 'validate'
 require_relative 'board'
 
 class Tictactoe_console_setup
-  attr_reader :game_controller
+  attr_reader :game_controller, :in_out
   def initialize(in_out = Console_in_out.new(STDIN, STDOUT))
     @in_out = in_out
 
@@ -22,11 +22,11 @@ class Tictactoe_console_setup
     board_size = assign_board_size
     @board = Board.new(board_size)
 
-    tictactoe_jules = Tictactoe_jules.new(in_out, player_x, player_o, @board)
+    tictactoe_jules = Tictactoe_jules.new(player_x, player_o, @board)
 
     welcome
     
-    @game_controller = Game_controller.new(tictactoe_jules)
+    @game_controller = Game_controller.new(tictactoe_jules, in_out)
   end
 
   private

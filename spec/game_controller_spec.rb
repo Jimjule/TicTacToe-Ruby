@@ -5,12 +5,12 @@ describe Tictactoe_jules do
   let(:output) { StringIO.new }
 
   before(:each) do
-    @in_out = Console_in_out.new(input, output)
+    in_out = Console_in_out.new(input, output)
     @player_x = Human_player.new('Player 1', 'X', @in_out)
     @player_o = Human_player.new('Player 2', 'O', @in_out)
     board = Board.new
-    tictactoe_jules = Tictactoe_jules.new(@in_out, @player_x, @player_o, board)
-    @game_controller = Game_controller.new(tictactoe_jules)
+    tictactoe_jules = Tictactoe_jules.new(@player_x, @player_o, board)
+    @game_controller = Game_controller.new(tictactoe_jules, in_out)
   end
 
   it 'Has a method to control the tictactoe_jules flow' do

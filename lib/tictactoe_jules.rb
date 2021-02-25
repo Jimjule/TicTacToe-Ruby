@@ -1,9 +1,8 @@
 class Tictactoe_jules
-  attr_reader :player_x, :player_o, :board, :in_out, :winner, :turn_count
+  attr_reader :player_x, :player_o, :board, :winner, :turn_count
 
-  def initialize(in_out, player_x, player_o, board)
+  def initialize(player_x, player_o, board)
     @turn_count = 1
-    @in_out = in_out
     @player_x = player_x
     @player_o = player_o
     @board = board
