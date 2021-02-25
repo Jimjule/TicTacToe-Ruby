@@ -4,6 +4,7 @@ class Game_controller
   def initialize(tictactoe_jules, in_out)
     @tictactoe_jules = tictactoe_jules
     @in_out = in_out
+    welcome
   end
 
   def go
@@ -21,6 +22,11 @@ class Game_controller
     @in_out.print(@tictactoe_jules.board.view_board)
   end
 
+  def welcome
+    @in_out.clear
+    @in_out.print('Welcome to TicTacToe')
+  end
+  
   def announce_winner
     @in_out.print("#{@tictactoe_jules.current_player.id} is the winner!") if @tictactoe_jules.winner
     @in_out.print('Draw!') unless @tictactoe_jules.winner

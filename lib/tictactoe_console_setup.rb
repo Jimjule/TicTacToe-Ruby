@@ -23,8 +23,6 @@ class Tictactoe_console_setup
     @board = Board.new(board_size)
 
     tictactoe_jules = Tictactoe_jules.new(player_x, player_o, @board)
-
-    welcome
     
     @game_controller = Game_controller.new(tictactoe_jules, in_out)
   end
@@ -44,10 +42,5 @@ class Tictactoe_console_setup
       board_size = @in_out.set_board_size
     end
     board_size
-  end
-
-  def welcome
-    @in_out.clear
-    @in_out.print('Welcome to TicTacToe')
   end
 end
