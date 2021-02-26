@@ -1,12 +1,12 @@
 class Computer_player
   attr_reader :id, :mark
-  def initialize(in_out)
-    @id = 'Computer'
-    @mark = 'O'
+  def initialize(id = 'Computer', mark = 'O')
+    @id = id
+    @mark = mark
   end
 
-  def select_move(board)
-    computer_move = select_free_square(board) - 1
+  def select_move(board, move = nil)
+    select_free_square(board) - 1
   end
 
   def select_free_square(board)

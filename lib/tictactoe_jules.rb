@@ -13,11 +13,19 @@ class Tictactoe_jules
     @turn_count % 2 == 0 ? @player_o : @player_x
   end
 
-  def submit_move
-    player_move = current_player.select_move(@board)
-    @board.make_move(current_player.mark, player_move)
-    @winner = @board.check_for_winner(current_player.mark)
-    @turn_count += 1 unless @winner
+  def submit_move(move = '')
+    puts move
+    if move == ''
+      player_move = current_player.select_move(@board, move)
+      @board.make_move(current_player.mark, player_move)
+      @winner = @board.check_for_winner(current_player.mark)
+      @turn_count += 1 unless @winner
+    else
+      player_move = current_player.select_move(@board, move)
+      @board.make_move(current_player.mark, player_move)
+      @winner = @board.check_for_winner(current_player.mark)
+      @turn_count += 1 unless @winner
+    end
   end
 
   def game_is_over

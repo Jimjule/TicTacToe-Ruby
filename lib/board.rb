@@ -25,8 +25,8 @@ class Board
   end
 
   def make_move(current_player, square)
-    @squares[square].mark(current_player)
-    @last_move = square
+    @squares[square.to_i].mark(current_player)
+    @last_move = square.to_i
   end
 
   def check_for_winner(current_player)

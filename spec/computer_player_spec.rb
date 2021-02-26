@@ -1,9 +1,8 @@
 require 'computer_player'
 
 describe Computer_player do
-  let(:in_out) { Console_in_out.new(StringIO.new, StringIO.new) }
   let(:board) { Board.new }
-  let(:computer_player) { Computer_player.new(in_out) }
+  let(:computer_player) { Computer_player.new }
 
   it 'Has a default name' do
     expect(computer_player.id).to eq('Computer')

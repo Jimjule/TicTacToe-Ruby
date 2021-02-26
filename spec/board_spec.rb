@@ -2,15 +2,24 @@ require 'board'
 require 'validate'
 
 describe Board do
-  let(:validate) { Validate.new }
   let(:board) { Board.new }
 
   it 'Makes a board' do
     expect(board.get_board_values).to eq([["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]])
   end
 
+  it 'Can make a 4x4 board' do
+    board = Board.new(4)
+    expect(board.get_board_values).to eq([["1", "2", "3", "4"], ["5", "6", "7", "8"], ["9", "10", "11", "12"], ["13", "14", "15", "16"]])
+  end
+
   it 'Contains a number of squares equal to max turns' do
     expect(board.squares.count).to eq(board.max_turns)
+  end
+
+  it 'A 9x9 board has 81 turns' do
+    board = Board.new(9)
+    expect(board.max_turns).to eq 81
   end
 
   it 'Gives the first square id 1' do
@@ -31,7 +40,7 @@ describe Board do
   end
 
   it 'Checks for a winner' do
-    player = Human_player.new('Player 1', 'X', 'console')
+    player = Human_player.new('Player 1', 'X')
     expect(board.check_for_winner(player)).to eq(false)
   end
 end
