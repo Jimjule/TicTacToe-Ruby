@@ -21,12 +21,12 @@ class Board
   end
 
   def is_square_free?(square_number)
-    @squares[square_number].is_square_free?
+    @squares[square_number - 1].is_square_free?
   end
 
   def make_move(current_player, square)
-    @squares[square.to_i].mark(current_player)
-    @last_move = square.to_i
+    @squares[square.to_i - 1].mark(current_player)
+    @last_move = square.to_i - 1
   end
 
   def check_for_winner(current_player)

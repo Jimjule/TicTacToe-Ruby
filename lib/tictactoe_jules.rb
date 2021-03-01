@@ -1,3 +1,7 @@
+require_relative 'player_factory'
+require_relative 'validate'
+require_relative 'board'
+
 class Tictactoe_jules
   attr_reader :player_x, :player_o, :board, :winner, :turn_count
 

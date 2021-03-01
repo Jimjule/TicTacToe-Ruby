@@ -11,7 +11,7 @@ describe Human_player do
     expect(player.mark).to eq('X')
   end
 
-  it 'Can make a move' do
+  it 'Can select a move' do
     board = Board.new
     expect(player.select_move(board, 2)).to eq(2)
   end
