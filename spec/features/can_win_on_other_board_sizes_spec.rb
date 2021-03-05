@@ -3,7 +3,7 @@ require 'tictactoe_jules'
 describe Tictactoe_jules do
   before(:each) do
     @player_x = Human_player.new('Player 1', 'X')
-    @player_o = Human_player.new('Player 2', 'O')
+    @player_o = Computer_player.new('Player 2', 'O')
   end
 
   it 'Win with row 4x4' do

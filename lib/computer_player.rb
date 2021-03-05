@@ -6,7 +6,11 @@ class Computer_player
   end
 
   def select_move(board, move = nil)
-    select_free_square(board) - 1
+    if move == nil
+      select_free_square(board) - 1
+    else
+      move
+    end
   end
 
   def select_free_square(board)
