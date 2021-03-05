@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = 'tictactoe_jules'
-  spec.version = '0.0.9'
+  spec.version = '0.0.11'
   spec.summary = 'The logic for a TicTacToe game with extra features.'
   spec.description = 'The logic for a TicTacToe game that should work in the console or in erb. Board size can be changed. Can be human-human or human-computer, and human players are named.'
   spec.authors = ['Jules Roadknight']
@@ -14,7 +14,8 @@ Gem::Specification.new do |spec|
     './lib/validate.rb', './spec/validate_spec.rb',
     './spec/features/can_win_and_declare_winner_spec.rb',
     './spec/features/can_win_on_other_board_sizes_spec.rb',
-    './spec/features/draw_ends_on_x_turn_spec.rb'
+    './spec/features/draw_ends_on_x_turn_spec.rb',
+    './spec/features/can_play_games_with_computers_spec.rb'
   ]
   spec.homepage = 'https://rubygems.org/gems/tictactoe_jules'
   spec.license = 'MIT'

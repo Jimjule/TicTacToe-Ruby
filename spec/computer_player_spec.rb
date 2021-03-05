@@ -16,13 +16,13 @@ describe Computer_player do
     expect(computer_player.get_free_squares(board)).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
   end
 
-  it 'Can return a number from 0' do
+  it 'Can return a number from 1' do
     allow(computer_player).to receive(:select_free_square).and_return(1)
-    expect(computer_player.select_move(board)).to eq(0)
+    expect(computer_player.select_move(board)).to eq(1)
   end
 
-  it 'Can return a number up to 8' do
-    allow(computer_player).to receive(:select_free_square).and_return(3)
-    expect(computer_player.select_move(board)).to eq(2)
+  it 'Can return a number up to 9' do
+    allow(computer_player).to receive(:select_free_square).and_return(9)
+    expect(computer_player.select_move(board)).to eq(9)
   end
 end
